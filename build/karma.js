@@ -1,69 +1,45 @@
 import wpSetup from './webpack';
 
-const webpackConfig = wpSetup({dev: false, test: true});
+const wpConfig = wpSetup({dev: false, test: true});
 
-//console.log('=================================');
-//console.log(JSON.stringify(webpackConfig, 4, 4));
-//console.log('=================================');
+export default function ({dev}) {
 
-export default function () {
-
-	return {
-
-		//coverageReporter: {
-		//	dir:'tmp/coverage/',
-		//	reporters: [
-		//		{ type:'html', subdir: 'report-html' },
-		//		{ type:'lcov', subdir: 'report-lcov' }
-		//	],
-		//	instrumenterOptions: {
-		//		istanbul: { noCompact:true }
-		//	}
-		//},
-
-		files: [
-			'src/modules/**/*.spec.js'
-		],
-
-		browsers: [
-			//'Chrome',
-			//'Safari',
-			//'Firefox',
-			'PhantomJS'
-		],
-
+	let cfg = {
+		autoWatch: dev,
+		singleRun: !dev,
 		frameworks: ['chai', 'jasmine'],
-
-		//reporters: ['mocha', 'coverage'],
 		reporters: ['mocha'],
-
+		browsers: ['PhantomJS'],
+		files: [
+			'src/**/*.spec.js'
+		],
 		preprocessors: {
-			'src/modules/**/*.spec.js': ['webpack', 'sourcemap']
+			'src/**/*.spec.js': ['webpack', 'sourcemap']
 		},
-
-		//singleRun: true,
-		//autoWatch: false,
-
 		plugins: [
 			'karma-chai',
 			'karma-mocha',
-			'karma-jasmine',
 			'karma-webpack',
-			//'karma-coverage',
+			'karma-jasmine',
 			'karma-mocha-reporter',
 			'karma-sourcemap-loader',
-			//'karma-safari-launcher',
-			//'karma-chrome-launcher',
-			//'karma-firefox-launcher',
 			'karma-phantomjs-launcher'
 		],
-
-		webpack: webpackConfig,
-
-		webpackMiddleware: {
-			noInfo: false
-		}
-
+		webpack: wpConfig,
+		webpackMiddleware: {noInfo: true}
 	};
+
+	if (!dev) {
+		cfg.browsers = [
+			'Chrome',
+			'Safari',
+			'Firefox'
+		];
+		cfg.plugins.push('karma-safari-launcher');
+		cfg.plugins.push('karma-chrome-launcher');
+		cfg.plugins.push('karma-firefox-launcher');
+	}
+
+	return cfg;
 
 }

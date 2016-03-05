@@ -1,16 +1,15 @@
-const PORT = process.env.PORT || 9001;
-
-export default function ({dev}) {
+export default function ({dev, port}) {
 
 	const baseDir = 'dist';
 
 	let cfg = {
 		server: {baseDir},
 		files: dev ? `${baseDir}/**/*.*` : null,
-		port: PORT,
+		port: port,
 		open: false,
 		notify: false
 	};
 
 	return cfg;
+
 }

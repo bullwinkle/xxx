@@ -6,7 +6,7 @@ import HtmlPlugin from 'html-webpack-plugin';
 const CWD = process.cwd();
 const PORT = process.env.PORT || 9001;
 
-export default function ({dev, hot, test}) {
+export default function ({dev, hot, test, port}) {
 
 	const JS_NAME = '[name].js';
 	const DEVTOOL = dev || test ? 'inline-source-map' : null;
@@ -80,6 +80,7 @@ export default function ({dev, hot, test}) {
 	if (hot) {
 		cfg.entry.app.unshift(`webpack-dev-server/client?http://localhost:${PORT}/`);
 		cfg.devServer = {
+			port,
 			hot: true,
 			stats: {
 				colors: true
