@@ -2,7 +2,9 @@
 	"extends": "eslint:recommended",
 	"parser": "babel-eslint",
 	"env": {
+		"jasmine": true,
 		"browser": true,
+		"mocha": true,
 		"node": true
 	},
 	"rules": {
