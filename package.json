@@ -78,6 +78,7 @@
     "test-dev": "gulp test",
     "build": "NODE_ENV=production gulp build",
     "test": "NODE_ENV=production gulp test",
-    "lint": "jscs build/* && eslint build/*"
+    "lint": "jscs build/* && eslint build/*",
+    "start": "echo env"
   }
 }
