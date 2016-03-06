@@ -1,6 +1,9 @@
 import wpSetup from './webpack';
 
-const wpConfig = wpSetup({dev: false, test: true});
+const wpConfig = wpSetup({
+	dev: false,
+	test: true
+});
 
 export default function ({dev, real}) {
 

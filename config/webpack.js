@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
-//import ExtractPlugin from 'extract-text-webpack-plugin';
-//import ManifestPlugin from 'manifest-revision-webpack-plugin';
+import ExtractPlugin from 'extract-text-webpack-plugin';
 
 const CWD = process.cwd();
 const SRC = CWD + '/src';
@@ -11,27 +10,33 @@ const PUBLIC = '/';
 
 export default function ({dev, hot, test, port}) {
 
-	const JS_NAME = '[name].js';
-	const DEVTOOL = dev || test ? 'inline-source-map' : null;
+	const DEVTOOL = dev || test ? 'inline-source-map' : 'source-map';
+	const JS_NAME = dev ? '[name].js' : '[name]-[chunkhash].js';
+	const CSS_NAME = dev ? '[name].css' : '[name]-[contenthash].css';
+	const ASSET_NAME = '[name]-[hash].[ext]';
 
 	const cfg = {
 		watch: dev,
 		cache: dev,
 		debug: dev,
 		context: SRC,
+		devtool: DEVTOOL,
 		entry: {
-			app: ['./app/app'],
-			vendor: ['./vendor/vendor']
+			app: ['app/app'],
+			vendor: ['vendor/vendor']
 		},
 		output: {
 			path: DIST,
 			filename: JS_NAME,
 			publicPath: PUBLIC
 		},
-		devtool: DEVTOOL,
 		resolve: {
-			modulesDirectories: ['node_modules'],
 			extensions: ['', '.js', '.json'],
+			modules: [
+				SRC,
+				SRC + '/modules',
+				'node_modules'
+			],
 			alias: {
 				assets: SRC + '/assets',
 				modules: SRC + '/modules'
@@ -45,7 +50,7 @@ export default function ({dev, hot, test, port}) {
 			}, {
 				test: /\.css$/,
 				include: SRC,
-				loader: 'style!css'
+				loader: ExtractPlugin.extract('css')
 			}, {
 				test: /\.html$/,
 				include: SRC,
@@ -62,10 +67,14 @@ export default function ({dev, hot, test, port}) {
 			}, {
 				test: /\.styl$/,
 				include: SRC,
-				loader: 'style!css!stylus!stylint'
+				loader: ExtractPlugin.extract('css!stylus!stylint')
+			}, {
+				test: /\.(svg|png|jpg|gif|eot|ttf|woff|woff2)$/,
+				loader: 'url-loader?limit=1&name=' + ASSET_NAME
 			}]
 		},
 		plugins: [
+			new ExtractPlugin(CSS_NAME),
 			new HtmlPlugin({
 				filename: 'index.html',
 				template: 'pages/index.jade'
@@ -73,13 +82,13 @@ export default function ({dev, hot, test, port}) {
 		]
 	};
 
-	if (test) {
-		cfg.entry.test = ['./app/app'];
-	}
+	//if (test) {
+	//	cfg.entry.test = ['./app/app'];
+	//}
 
 	if (hot) {
 		const entry = `webpack-dev-server/client`;
-		const query = `localhost:${port}/`;
+		const query = `http://localhost:${port}/`;
 		cfg.entry.app.unshift(`${entry}?${query}`);
 		cfg.devServer = {
 			port,
