@@ -2,7 +2,7 @@ import wpSetup from './webpack';
 
 const wpConfig = wpSetup({dev: false, test: true});
 
-export default function ({dev}) {
+export default function ({dev, real}) {
 
 	let cfg = {
 		autoWatch: dev,
@@ -29,7 +29,7 @@ export default function ({dev}) {
 		webpackMiddleware: {noInfo: true}
 	};
 
-	if (!dev) {
+	if (real) {
 		cfg.browsers = [
 			'Chrome',
 			'Safari',

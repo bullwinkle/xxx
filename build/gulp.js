@@ -44,7 +44,7 @@ task('serve', () => {
 });
 
 task('test', (done) => {
-	const server = new KarmaServer(karmaSetup({dev: DEV}), (code) => {
+	const server = new KarmaServer(karmaSetup({dev: DEV, real: false}), (code) => {
 		if (!DEV) done();
 		console.log('Karma has exited with ' + code);
 		process.exit(code);
