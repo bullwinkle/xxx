@@ -1,3 +1,6 @@
+import gzip from 'compression';
+import spa from 'browser-sync-spa';
+
 export default function ({dev, port}) {
 
 	const baseDir = 'dist';
@@ -9,6 +12,10 @@ export default function ({dev, port}) {
 		open: false,
 		notify: false
 	};
+
+	if (!dev) {
+		cfg.middleware = [gzip()];
+	}
 
 	return cfg;
 

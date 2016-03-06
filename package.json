@@ -1,6 +1,15 @@
 {
   "name": "xxx",
   "version": "0.0.1",
+  "scripts": {
+    "dev": "gulp",
+    "hot": "gulp hot",
+    "demo": "NODE_ENV=production gulp",
+    "test-dev": "gulp test",
+    "build": "NODE_ENV=production gulp build",
+    "test": "NODE_ENV=production gulp test",
+    "lint": "jscs build/* && eslint build/*"
+  },
   "dependencies": {
     "angular": "1.5.0",
     "angular-animate": "1.5.0",
@@ -42,16 +51,12 @@
     "jscs-loader": "0.2.0",
     "json-loader": "0.5.4",
     "karma": "0.13.21",
-    "karma-babel-preprocessor": "^6.0.1",
     "karma-chai": "0.1.0",
-    "karma-chrome-launcher": "0.2.2",
     "karma-coverage": "0.5.4",
-    "karma-firefox-launcher": "0.1.7",
     "karma-jasmine": "0.3.7",
     "karma-mocha": "0.2.2",
     "karma-mocha-reporter": "1.2.3",
     "karma-phantomjs-launcher": "1.0.0",
-    "karma-safari-launcher": "0.1.1",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
     "lodash": "4.6.1",
@@ -68,17 +73,12 @@
     "stylint-loader": "1.0.0",
     "stylus-loader": "1.5.1",
     "url-loader": "0.5.7",
-    "webpack": "2.1.0-beta.4",
-    "webpack-dev-server": "2.0.0-beta"
+    "webpack": "2.1.0-beta.4"
   },
-  "scripts": {
-    "dev": "gulp",
-    "hot": "gulp hot",
-    "demo": "NODE_ENV=production gulp",
-    "test-dev": "gulp test",
-    "build": "NODE_ENV=production gulp build",
-    "test": "NODE_ENV=production gulp test",
-    "lint": "jscs build/* && eslint build/*",
-    "start": "echo env"
+  "devDependencies": {
+    "karma-chrome-launcher": "0.2.2",
+    "karma-firefox-launcher": "0.1.7",
+    "karma-safari-launcher": "0.1.1",
+    "webpack-dev-server": "2.0.0-beta"
   }
 }

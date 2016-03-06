@@ -26,7 +26,10 @@ export default function ({dev, real}) {
 			'karma-phantomjs-launcher'
 		],
 		webpack: wpConfig,
-		webpackMiddleware: {noInfo: true}
+		webpackMiddleware: {
+			colors: true,
+			noInfo: false
+		}
 	};
 
 	if (real) {

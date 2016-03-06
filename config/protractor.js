@@ -1,6 +1,8 @@
 export default function ({dev}) {
 
-	let cfg = {};
+	let cfg = {
+		watch: dev
+	};
 
 	return cfg;
 

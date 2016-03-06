@@ -40,11 +40,17 @@ task('build', (done) => {
 
 task('serve', () => {
 	const server = browsersync.create();
-	server.init(bsSetup({dev: DEV, port: PORT}));
+	server.init(bsSetup({
+		dev: DEV,
+		port: PORT
+	}));
 });
 
 task('test', (done) => {
-	const server = new KarmaServer(karmaSetup({dev: DEV, real: false}), (code) => {
+	const server = new KarmaServer(karmaSetup({
+		dev: DEV,
+		real: false
+	}), (code) => {
 		if (!DEV) done();
 		console.log('Karma has exited with ' + code);
 		process.exit(code);

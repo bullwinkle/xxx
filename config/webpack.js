@@ -4,7 +4,10 @@ import HtmlPlugin from 'html-webpack-plugin';
 //import ManifestPlugin from 'manifest-revision-webpack-plugin';
 
 const CWD = process.cwd();
-const PORT = process.env.PORT || 9001;
+const SRC = CWD + '/src';
+const DIST = CWD + '/dist';
+const PAGES = SRC + '/pages';
+const PUBLIC = '/';
 
 export default function ({dev, hot, test, port}) {
 
@@ -15,58 +18,51 @@ export default function ({dev, hot, test, port}) {
 		watch: dev,
 		cache: dev,
 		debug: dev,
-		context: CWD + '/src',
+		context: SRC,
 		entry: {
 			app: ['./app/app'],
 			vendor: ['./vendor/vendor']
 		},
 		output: {
-			path: CWD + '/dist',
+			path: DIST,
 			filename: JS_NAME,
-			publicPath: '/'
+			publicPath: PUBLIC
 		},
 		devtool: DEVTOOL,
 		resolve: {
 			modulesDirectories: ['node_modules'],
 			extensions: ['', '.js', '.json'],
 			alias: {
-				assets: CWD + 'src/assets'
+				assets: SRC + '/assets',
+				modules: SRC + '/modules'
 			}
 		},
 		module: {
-			preLoaders: [{
-				test: /\.js$/,
-				include: CWD + '/src',
-				loader: 'eslint!jscs'
-			}, {
-				test: /\.styl$/,
-				include: CWD + '/src',
-				loader: 'stylint'
-			}],
 			loaders: [{
 				test: /\.js$/,
-				include: CWD + '/src',
-				loader: 'babel'
+				include: SRC,
+				loader: 'babel!eslint!jscs'
 			}, {
 				test: /\.css$/,
-				include: CWD + '/src',
+				include: SRC,
 				loader: 'style!css'
 			}, {
 				test: /\.html$/,
-				include: CWD + '/src',
+				include: SRC,
 				loader: 'html'
 			}, {
 				test: /\.jade$/,
-				include: CWD + '/src/pages',
+				include: PAGES,
 				loader: 'jade?pretty=true'
 			}, {
 				test: /\.jade$/,
-				include: CWD + '/src/app',
+				include: SRC,
+				exclude: PAGES,
 				loader: 'raw!jade-html'
 			}, {
 				test: /\.styl$/,
-				include: CWD + '/src',
-				loader: 'style!css!stylus'
+				include: SRC,
+				loader: 'style!css!stylus!stylint'
 			}]
 		},
 		plugins: [
@@ -77,8 +73,14 @@ export default function ({dev, hot, test, port}) {
 		]
 	};
 
+	if (test) {
+		cfg.entry.test = ['./app/app'];
+	}
+
 	if (hot) {
-		cfg.entry.app.unshift(`webpack-dev-server/client?http://localhost:${PORT}/`);
+		const entry = `webpack-dev-server/client`;
+		const query = `localhost:${port}/`;
+		cfg.entry.app.unshift(`${entry}?${query}`);
 		cfg.devServer = {
 			port,
 			hot: true,
@@ -91,7 +93,9 @@ export default function ({dev, hot, test, port}) {
 	if (!dev) {
 		cfg.plugins.push(
 			new webpack.optimize.UglifyJsPlugin({
-
+				compress: {
+					warnings: false
+				}
 			})
 		);
 	}
