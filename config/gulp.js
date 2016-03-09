@@ -8,14 +8,14 @@ import spa from 'browser-sync-spa';
 import {Server as KarmaServer} from 'karma';
 import {task, parallel, series} from 'gulp';
 
-const SPA = true;
-const DEV = process.env.NODE_ENV !== 'production';
-const PORT = process.env.PORT || 9001;
-
 import wpSetup from './webpack';
 import bsSetup from './browsersync';
 import protSetup from './protractor';
 import karmaSetup from './karma';
+
+const SPA = true;
+const DEV = process.env.NODE_ENV !== 'production';
+const PORT = process.env.PORT || 9001;
 
 task('clean', () => del('dist'));
 

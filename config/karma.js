@@ -21,8 +21,7 @@ export default function ({dev, real}) {
 		files: [
 			'./test/unit/index.js',
 			'./test/unit/**/*.js',
-			'./src/**/*.spec.js',
-			'./src/**/*.unit.js'
+			'./src/**/*.spec.js'
 		],
 		preprocessors: {
 			'./src/**/*.js': ['webpack', 'sourcemap'],
