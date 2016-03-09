@@ -34,7 +34,7 @@ export default function ({dev, hot, test, port}) {
 		},
 		resolve: {
 			extensions: ['', '.js', '.json'],
-			modulesDirectories: [
+			modules: [
 				'node_modules',
 				SRC,
 				SRC + '/modules'
