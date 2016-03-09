@@ -9,7 +9,7 @@
     "lint": "jscs build/* && eslint build/*",
     "demo": "NODE_ENV=production gulp",
     "test": "NODE_ENV=production gulp test",
-    "build": "NODE_ENV=production gulp build",
+    "build": "NODE_ENV=production gulp build"
   },
   "dependencies": {
     "angular": "1.5.0",
