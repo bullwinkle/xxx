@@ -34,7 +34,7 @@ export default function ({dev, hot, test, port}) {
 		},
 		resolve: {
 			extensions: ['', '.js', '.json'],
-			modules: [
+			modulesDirectories: [
 				'node_modules',
 				SRC,
 				SRC + '/modules'
@@ -47,7 +47,7 @@ export default function ({dev, hot, test, port}) {
 			loaders: [{
 				test: /\.js$/,
 				include: [SRC, TEST],
-				loader: 'babel!ng-annotate!eslint!jscs'
+				loader: 'ng-annotate!babel!eslint!jscs'
 			}, {
 				test: /\.css$/,
 				include: SRC,
@@ -101,7 +101,6 @@ export default function ({dev, hot, test, port}) {
 	if (!test) {
 		cfg.plugins.push(
 			new HtmlPlugin({
-				chunksSortMode: 'none',
 				filename: 'index.html',
 				template: 'src/pages/index.jade'
 			})
@@ -112,7 +111,6 @@ export default function ({dev, hot, test, port}) {
 	if (!dev && !test) {
 		cfg.plugins.push(
 			new webpack.optimize.UglifyJsPlugin({
-				mangle: false,
 				compress: {
 					warnings: false
 				}
