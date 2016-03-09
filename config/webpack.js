@@ -51,7 +51,11 @@ export default function ({dev, hot, test, port}) {
 			}, {
 				test: /\.css$/,
 				include: SRC,
-				loader: ExtractPlugin.extract('css')
+				loader: ExtractPlugin.extract('css?sourceMap')
+			}, {
+				test: /\.styl$/,
+				include: SRC,
+				loader: ExtractPlugin.extract('css?sourceMap!stylus!stylint')
 			}, {
 				test: /\.html$/,
 				include: SRC,
@@ -65,10 +69,6 @@ export default function ({dev, hot, test, port}) {
 				include: SRC,
 				exclude: PAGES,
 				loader: `ng-cache?prefix=${TPL_NAME}!jade-html`
-			}, {
-				test: /\.styl$/,
-				include: SRC,
-				loader: ExtractPlugin.extract('css!stylus!stylint')
 			}, {
 				test: /\.(svg|png|jpg|gif|eot|ttf|woff|woff2)$/,
 				loader: `url-loader?limit=${ASSET_CACHE}&name=${ASSET_NAME}`
@@ -97,6 +97,7 @@ export default function ({dev, hot, test, port}) {
 		cfg.cache = false;
 		cfg.debug = false;
 	}
+
 	if (!test) {
 		cfg.plugins.push(
 			new HtmlPlugin({

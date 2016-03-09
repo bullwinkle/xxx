@@ -19,17 +19,14 @@ export default function ({dev, real}) {
 		reporters: ['mocha'],
 		browsers: ['PhantomJS'],
 		files: [
-			'./dist/vendor.js',
-			'./node_modules/angular-mocks/angular-mocks.js',
-			'./dist/app.js',
+			'./test/unit/index.js',
+			'./test/unit/**/*.js',
 			'./src/**/*.spec.js',
-			'./src/**/*.unit.js',
-			'./test/unit/**/*.js'
+			'./src/**/*.unit.js'
 		],
 		preprocessors: {
-			'./src/**/*.spec.js': ['webpack', 'sourcemap'],
-			'./src/**/*.unit.js': ['webpack', 'sourcemap'],
-			'./test/unit/**/*.js': ['webpack', 'sourcemap']
+			'./src/**/*.js': ['webpack', 'sourcemap'],
+			'./test/**/*.js': ['webpack', 'sourcemap']
 		},
 		plugins: [
 			'karma-chai',

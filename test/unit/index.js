@@ -1,6 +1,6 @@
-//import 'vendor/vendor';
-//import 'angular-mocks';
-//import 'app/app';
+import 'vendor/vendor';
+import 'angular-mocks';
+import 'app/app';
 
 // Hack for loading all tests async for karma
 
@@ -15,5 +15,3 @@
 //		expect(123).to.be.a('number');
 //	});
 //});
-
-console.log(121);
