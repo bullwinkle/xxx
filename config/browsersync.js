@@ -1,5 +1,4 @@
 import gzip from 'compression';
-import spa from 'browser-sync-spa';
 
 export default function ({dev, port}) {
 

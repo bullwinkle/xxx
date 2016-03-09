@@ -1,5 +1,13 @@
-html
+html(ng-app="app")
+
 	head
+
 		title App
+
+		base(href="/")
+
+		link(rel="icon" href=require("assets/logo.png"))
+
 	body
+
 		ui-view

@@ -1,8 +1,13 @@
 import wpSetup from './webpack';
 
-const wpConfig = wpSetup({
-	dev: false,
+const defaults = wpSetup({
+	dev: true,
 	test: true
+});
+
+const wpConfig = Object.assign(defaults, {
+	entry: {},
+	output: {}
 });
 
 export default function ({dev, real}) {
@@ -14,10 +19,17 @@ export default function ({dev, real}) {
 		reporters: ['mocha'],
 		browsers: ['PhantomJS'],
 		files: [
-			'src/**/*.spec.js'
+			'./dist/vendor.js',
+			'./node_modules/angular-mocks/angular-mocks.js',
+			'./dist/app.js',
+			'./src/**/*.spec.js',
+			'./src/**/*.unit.js',
+			'./test/unit/**/*.js'
 		],
 		preprocessors: {
-			'src/**/*.spec.js': ['webpack', 'sourcemap']
+			'./src/**/*.spec.js': ['webpack', 'sourcemap'],
+			'./src/**/*.unit.js': ['webpack', 'sourcemap'],
+			'./test/unit/**/*.js': ['webpack', 'sourcemap']
 		},
 		plugins: [
 			'karma-chai',
@@ -30,8 +42,7 @@ export default function ({dev, real}) {
 		],
 		webpack: wpConfig,
 		webpackMiddleware: {
-			colors: true,
-			noInfo: false
+			noInfo: true
 		}
 	};
 

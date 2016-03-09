@@ -5,6 +5,7 @@ import ExtractPlugin from 'extract-text-webpack-plugin';
 const CWD = process.cwd();
 const SRC = CWD + '/src';
 const DIST = CWD + '/dist';
+const TEST = CWD + '/test';
 const PAGES = SRC + '/pages';
 const PUBLIC = '/';
 
@@ -13,17 +14,18 @@ export default function ({dev, hot, test, port}) {
 	const DEVTOOL = dev || test ? 'inline-source-map' : 'source-map';
 	const JS_NAME = dev ? '[name].js' : '[name]-[chunkhash].js';
 	const CSS_NAME = dev ? '[name].css' : '[name]-[contenthash].css';
+	const TPL_NAME = 'tpl/[dir]/[dir]';
 	const ASSET_NAME = '[name]-[hash].[ext]';
+	const ASSET_CACHE = 1024 * 10; // 10KB
 
 	const cfg = {
 		watch: dev,
 		cache: dev,
 		debug: dev,
-		context: SRC,
 		devtool: DEVTOOL,
 		entry: {
-			app: ['app/app'],
-			vendor: ['vendor/vendor']
+			vendor: ['./src/vendor/vendor'],
+			app: ['./src/app/app']
 		},
 		output: {
 			path: DIST,
@@ -33,20 +35,19 @@ export default function ({dev, hot, test, port}) {
 		resolve: {
 			extensions: ['', '.js', '.json'],
 			modules: [
+				'node_modules',
 				SRC,
-				SRC + '/modules',
-				'node_modules'
+				SRC + '/modules'
 			],
 			alias: {
-				assets: SRC + '/assets',
-				modules: SRC + '/modules'
+				assets: SRC + '/assets'
 			}
 		},
 		module: {
 			loaders: [{
 				test: /\.js$/,
-				include: SRC,
-				loader: 'babel!eslint!jscs'
+				include: [SRC, TEST],
+				loader: 'babel!ng-annotate!eslint!jscs'
 			}, {
 				test: /\.css$/,
 				include: SRC,
@@ -63,28 +64,20 @@ export default function ({dev, hot, test, port}) {
 				test: /\.jade$/,
 				include: SRC,
 				exclude: PAGES,
-				loader: 'raw!jade-html'
+				loader: `ng-cache?prefix=${TPL_NAME}!jade-html`
 			}, {
 				test: /\.styl$/,
 				include: SRC,
 				loader: ExtractPlugin.extract('css!stylus!stylint')
 			}, {
 				test: /\.(svg|png|jpg|gif|eot|ttf|woff|woff2)$/,
-				loader: 'url-loader?limit=1&name=' + ASSET_NAME
+				loader: `url-loader?limit=${ASSET_CACHE}&name=${ASSET_NAME}`
 			}]
 		},
 		plugins: [
-			new ExtractPlugin(CSS_NAME),
-			new HtmlPlugin({
-				filename: 'index.html',
-				template: 'pages/index.jade'
-			})
+			new ExtractPlugin(CSS_NAME)
 		]
 	};
-
-	//if (test) {
-	//	cfg.entry.test = ['./app/app'];
-	//}
 
 	if (hot) {
 		const entry = `webpack-dev-server/client`;
@@ -99,9 +92,26 @@ export default function ({dev, hot, test, port}) {
 		};
 	}
 
-	if (!dev) {
+	if (test) {
+		cfg.watch = false;
+		cfg.cache = false;
+		cfg.debug = false;
+	}
+	if (!test) {
+		cfg.plugins.push(
+			new HtmlPlugin({
+				chunksSortMode: 'none',
+				filename: 'index.html',
+				template: 'src/pages/index.jade'
+			})
+		);
+
+	}
+
+	if (!dev && !test) {
 		cfg.plugins.push(
 			new webpack.optimize.UglifyJsPlugin({
+				mangle: false,
 				compress: {
 					warnings: false
 				}
