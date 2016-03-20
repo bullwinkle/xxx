@@ -6,7 +6,23 @@ module.exports = function ($location, $state, post, categories, tags, $timeout, 
 	vm.post.$promise.then(() => {
 		vm.post.categoriesLinks = _.mapEntityByIds(vm.post.categories, categories);
 		vm.post.tagsLinks = _.mapEntityByIds(vm.post.tags, tags);
-		$timeout(_initRowGallery,100)
+
+		//TODO: REFACTOR THIS BIG PEACE OF SHIT
+		$timeout(() => {
+			_initRowGallery()
+			var $scrScripts = $("article script[src]")
+			$scrScripts.each((i, script) => {
+				var $scrScript = $(script)
+				var src = $scrScript.attr('src')
+				var $newScript = $('<script type="text/javascript">')
+				$newScript.attr('src',src);
+				$newScript.prependTo('head')
+				setTimeout(() => {
+					$newScript.remove()
+				})
+			})
+		},100)
+
 	})
 	return vm;
 };
