@@ -1,0 +1,64 @@
+.article.m
+	&-preview
+	&-preview-small
+	&-product-preview
+		display: block
+		color inherit
+
+		transition z-index 0s linear .2s
+		z-index 1
+		&:hover
+			z-index 20
+			transition z-index 0s linear 0s
+
+		&:focus
+			color $blue1
+
+		& > a
+			width: 100%
+			height: 100%
+			display block
+			text-decoration: none
+			transition transform .12s ease-in-out, box-shadow .15s ease, background-color .11s ease-in-out, color .2s ease-in-out
+			background-color rgba(255,255,255,0)
+			box-shadow 0 0 1px 0 transparent
+			transform scale3d(1,1,1) translate3d(0,0,0)
+			&:hover
+				hoverBoxShadow()
+				transition transform .15s ease-in-out, box-shadow .15s ease, background-color .11s ease-in-out, color .2s ease-in-out
+				background-color rgba(255,255,255,1)
+				transform scale3d(1.05,1.05,1.05) translate3d(0,0,0)
+
+	&-preview
+	&-preview-small
+		.title
+			h3()
+			color $red
+		&:hover
+			.td-u
+				text-decoration: none
+
+	&-product-preview
+		.title
+			h3()
+			color $black
+			margin-bottom: 5px
+
+		.add-to-cart:hover
+			@extend a:hover
+
+	&-howto
+	&-full
+		img
+		.media
+			margin-bottom: 20px
+
+	&-full
+		.image-broken
+			display none
+
+
+		.post-content
+			padding-bottom: 30px;
+			border-bottom: 1px dashed;
+			margin-bottom: 20px;

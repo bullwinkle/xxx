@@ -1,0 +1,15 @@
+.map
+
+	background-image: url("~img/logo-black.svg")
+	background-repeat: no-repeat
+	background-position center
+
+	@media screen and (max-width: $screen-xs-max)
+		background-size: 100%
+	@media screen and (min-width: $screen-sm-min)
+		background-size: 900px
+
+	> ymaps,
+	> ymaps > ymaps
+		background transparent
+

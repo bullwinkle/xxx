@@ -1,0 +1,154 @@
+//.global-search-form
+//	&.ng-invalid
+
+.global-search-input
+	position: relative
+	font-weight: 100
+	overflow: hidden
+
+	.icon
+	.glyphicon
+		position: absolute
+		top: 50%
+		right: 10px
+		width: 20px
+		height: 20px
+		margin-top: -9px
+		transform translate(0, 0)
+		transition transform .2s ease-in-out
+		z-index -1
+		&:before
+			font-weight: 100
+	input
+		// TODO move colors to color scheme
+		$error = rgba(197,2,10,0.8)
+		$success = rgba(41, 140, 41, 0.53)
+
+		border-radius 2px
+		margin 0
+		box-shadow 0 -10px 0px -10px $error inset
+		width: 46px
+		padding-right: 34px
+		transition width .2s ease-in-out, padding-right .2s ease-in-out, box-shadow .4s ease-in-out
+		background: transparent;
+		&:not(:focus)
+			width: 46px
+			padding-right: 34px
+
+		&:focus
+			width: 200px;
+			padding-right: 0
+			&.ng-invalid
+				box-shadow 0 -10px 10px -10px $error inset
+			&.ng-valid
+				box-shadow 0 -10px 8px -10px $success inset
+
+	input:focus + .glyphicon
+		transform translate(60px, 0)
+
+.ui-load-more-button
+	opacity 1
+
+	.icon
+	.glyphicon
+		transform-origin: 48.5%;
+		transform rotate(0deg)
+
+	&.is-loading
+		.icon
+		.glyphicon
+			animation-name: rotate;
+			animation-duration: .5s;
+			animation-timing-function: linear;
+			animation-delay: initial;
+			animation-iteration-count: infinite;
+			animation-direction: initial;
+			animation-fill-mode: both;
+			animation-play-state: running;
+
+	&.disabled
+		opacity 0.5
+		cursor: default
+
+.ui-photo-list
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	padding: 1% 0;
+	max-width: 100%;
+	text-align: center;
+	-webkit-overflow-scrolling touch
+	margin-top: 40px
+	margin-bottom: 40px
+
+	.photo-wrapper
+		display: inline-block
+		position: relative
+		margin-left: -5px;
+		overflow hidden
+		&:first-child
+			margin-left: 0;
+
+		@media screen and (max-width $screen-xs-max)
+			width (100 / 2) %
+		@media screen and (min-width $screen-sm-min)
+			width (100 / 4) %
+		@media screen and (min-width $screen-md-min)
+			width (100 / 5) %
+
+	.photo
+
+		background-image url("~img/examples/g-1.jpg")
+		background-size cover
+		padding-top: 100%
+		transition box-shadow .18s ease-in-out
+		position: relative
+		cursor pointer
+		@media screen and (max-width $screen-xs-max)
+			box-shadow 0 0 50px 50px rgba(0, 0, 0, 0.3) inset
+			&:hover
+				box-shadow 0 0 50px 200px rgba(0, 0, 0, 0.7) inset
+		@media screen and (min-width $screen-sm-min)
+			box-shadow 0 0 30px 20px rgba(0, 0, 0, 0.3) inset
+			&:hover
+				box-shadow 0 0 180px 180px rgba(0, 0, 0, 0.7) inset
+		//@media screen and (min-width $screen-md-min)
+		&:hover
+			.icon
+				animation-delay .2s
+				animation-name bounceIn
+
+	.icon
+		$width = 24px
+		$height = $width
+		font-size: $width;
+		width: $width;
+		height: $height;
+		margin: unit($width/ -2, px) 0 0 unit($width/ -2, px)
+		position: absolute;
+		color: rgba(255, 255, 255, 0.5);
+		top: 50%;
+		left: 50%;
+		animation-duration .3s
+		animation-delay 0
+		animation-iteration-count 1
+		animation-direction forward
+		animation-fill-mode both
+		animation-name zoomOut
+
+		@media screen and (max-width $screen-xs-max)
+			$width = 30px
+			$height = $width
+			font-size: $width;
+			width: $width;
+			height: $height;
+			margin: unit($width/ -2, px) 0 0 unit($width/ -2, px)
+
+//@media screen and (min-width $screen-sm-min)
+//@media screen and (min-width $screen-md-min)
+
+@keyframes rotate
+	from
+		transform: rotate(0deg)
+	to
+		transform rotate(360deg)

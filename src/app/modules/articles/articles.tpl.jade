@@ -1,0 +1,28 @@
+section.container-fluid.l-container
+	ul.row
+		//+article-preview-h
+		li.col-sm-6.l-p-10.article.m-preview-small(ng-repeat="article in vm.articles")
+			a.l-p-20(
+				ng-attr-title="{{::vm.html(article.title.rendered)}}"
+				ui-sref="app.articles.article({id: article.id })"
+				ng-init="thumb=vm.getThumbnailUrl(article.acf.featured_image.sizes.thumbnail)"
+				)
+				.row.l-mb-20
+					.col-xs-4
+						.thumbnail-cover(ng-if="::thumb")
+							.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
+
+					div(ng-class="::{'col-xs-8': !!thumb,'col-xs-12': !thumb }")
+						.title.l-mb-10(ng-bind-html="::article.title.rendered")
+						.description.black.f-sz-14(ng-bind-html="::article.excerpt.rendered")
+				.row
+					.col-xs-6.date.text-left.grey-2(ng-bind="::article.date | date:'dd.MM.yyyy'")
+					.col-xs-6.read-more.text-right
+						.link.td-u.f-w-900 Читать далее
+
+	.row.text-center
+		button.m-text.ui-load-more-button(ng-click="vm.loadMore()")
+			.glyphicon.glyphicon-repeat
+			.text Загрузить еще
+
+//+carousel-row

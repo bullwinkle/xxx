@@ -1,0 +1,42 @@
+.l-header
+	background-image: url('~img/kawasaki_ninja2.jpg');
+	background-size cover
+	background-position 70% bottom
+
+	@media screen and (min-width: $screen-xs)
+		background-position 85% bottom
+
+	@media screen and (min-width: $screen-sm)
+		background-position center bottom
+
+	.nw-info
+		margin-top: 70px;
+		margin-bottom: 170px;
+		.nw-logo
+			margin-bottom: 70px
+			@media screen and (max-width: $screen-sm)
+				.nw-logo-description
+					white-space: normal
+					text-align: right
+			@media screen and (max-width: $screen-xs)
+				.nw-logo-description
+					text-align: center
+		.phone
+			.icon
+				margin: 4px 5px 0 0;
+				border-radius: 100px;
+				background-color: white;
+				padding: 5px;
+				color: lighten($grey, 50%);
+				font-size: 12px;
+			a
+				color white
+				text-decoration: underline
+		@media screen and (max-width: $screen-sm)
+			text-align: right
+			.nw-logo
+			.phone
+				width: 100%
+		@media screen and (max-width: $screen-xs)
+			text-align: center
+

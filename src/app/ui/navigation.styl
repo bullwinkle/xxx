@@ -1,0 +1,46 @@
+.l-main-navigation
+	background: $blue1
+	padding-top: 1px
+	padding-bottom: 1px
+
+	&-items
+		display flex
+		flex-flow row wrap
+		justify-content space-between
+		&:hover
+			.l-main-navigation-item:not(:hover)
+				box-shadow 0 0 0 0 $red inset
+
+	&-item
+		flex-grow 1
+		flex-shrink 0
+		font-size: 18px
+		text-align: center
+		font-weight: 600
+		box-shadow 0 0 0 0 $red inset
+		transition box-shadow 0.2s ease-in-out
+		a
+			text-decoration: none
+			display: block
+			padding:20px
+			color $grey1
+
+		&:hover
+		&.active
+			box-shadow 0 -5px 0 0 $red inset
+			a
+				color white
+				text-decoration none
+
+		&:first-child
+			a
+				padding-left: 3px
+		&:last-child
+			a
+				padding-right: 3px
+
+.l-footer .menu	.active
+	&, & a
+		font-weight: 900
+		font-size: 20px
+		color: white

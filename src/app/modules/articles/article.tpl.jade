@@ -1,0 +1,12 @@
+article.container-fluid.l-container.about-page.article.m-howto
+	.row
+		.col-xs-12.text-right(ng-bind="vm.article.date | date:'dd.MM.yyyy'")
+
+	.row
+		.col-xs-12
+			.h1.text-center(ng-bind-html="vm.article.title.rendered")
+
+			div(ng-bind-html="vm.article.content.rendered")
+
+//+comments-block
+//+carousel-row

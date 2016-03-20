@@ -1,0 +1,59 @@
+.container-fluid.l-container
+	ul.row.products
+		li.col-xs-6.col-sm-4.col-md-3.l-plr-10.l-mb-20.l-pb-10.black.article.m-product-preview(ng-repeat="product in vm.order.products")
+			a.l-plr-15(href="{{product.link}}" ng-init="thumb=vm.getThumbnailUrl(product.acf.featured_image.sizes.thumbnail)")
+				.row
+					.thumbnail-cover
+						.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
+				.row
+					.info.l-p-20
+						.title.l-mb-5(ng-bind-html="::product.title.rendered")
+						.description.f-lh-26.black(ng-bind-html="::product.acf.price")
+						.td-u.f-w-900.l-inline.red.add-to-cart(ng-click="vm.remove(product, $event)") Удалить
+
+	.row.order
+		.col-xs-12.col-sm-6.pull-right
+			.f-sz-20.l-mb-20 Стоимость &nbsp
+				span.red(ng-bind="vm.getTotalPrice() | currency")
+
+			p.description.f-sz-16.grey-3.
+				Оплата производиться только в момент получения заказа.
+				Бронь бесплатная и действует в течение пяти дней.
+				Пожалуйста, заполните поля, чтобы мы могли связаться с вами.
+
+		.col-xs-12.col-sm-6.col-offset-sm-6.pull-left.l-mb-30
+			form(
+				name="vm.orderForm"
+				ng-submit="vm.placeOrder(vm.orderForm,$event)"
+			)
+				input.name(
+					name="name"
+					ng-model="vm.order.name"
+					type="text"
+					placeholder="Имя"
+					required
+				)
+				input.phone(
+					name="phone"
+					ng-model="vm.order.phone"
+					type="text"
+					placeholder="Телефон"
+					required
+				)
+				input.email(
+					name="email"
+					ng-model="vm.order.email"
+					type="email"
+					placeholder="e-mail"
+				)
+				textarea.comment(
+					name="comment"
+					ng-model="vm.order.comment"
+					placeholder="Комментарий"
+				)
+				button.m-action(
+					type="submit"
+					ng-disabled="vm.orderForm.$invalid || vm.orderForm.$pristine"
+				)
+					span(ng-if="!vm.orderForm.$submitted") Заказать
+					span(ng-if="vm.orderForm.$submitted") Заказ отправлен !

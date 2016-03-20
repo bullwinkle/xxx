@@ -1,0 +1,35 @@
+.container-fluid.l-container
+	.row.contacts-info
+		.contacts-info-block
+			.contacts-info-inner-block
+				.title.red
+					.glyphicon.glyphicon-earphone
+					|Телефон:
+				.content.f-sz-22.f-lh-40.black.
+					8 (990) 123 34 45
+		.contacts-info-block
+			.contacts-info-inner-block
+				.title.red
+					.glyphicon.glyphicon-map-marker
+					|Адрес:
+				.content.f-sz-22.f-lh-40.black
+					|Москва, метро Отрадное,
+					br
+					|Сигнальный проезд 18
+		.contacts-info-block
+			.contacts-info-inner-block
+				.title.red
+					.glyphicon.glyphicon-time
+					|Режим работы:
+				.content.f-sz-22.f-lh-40.black
+					ul
+						li ПН-ПТ: c 12-19
+						li СБ-ВС: выходной
+
+.embed-responsive(style="height: 380px;")
+	.map.embed-responsive-item
+		script(
+			type="text/javascript"
+			charset="utf-8"
+			src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=eKycNpgoeS2-X_99UWTRH5aGdTeibdOA&#038;width=600&#038;height=450"
+		)

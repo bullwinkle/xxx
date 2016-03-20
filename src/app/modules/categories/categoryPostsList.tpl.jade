@@ -1,0 +1,18 @@
+section.container-fluid.l-container
+	ul.row
+		//+article-preview-v
+		li.col-xs-12.col-sm-6.col-md-4.l-mb-20.l-pb-10.black.article.m-preview(
+			ng-repeat="post in vm.posts"
+		)
+			a.l-plr-15(href="{{post.link}}" ng-init="thumb=vm.getThumbnailUrl(post.acf.featured_image.sizes.thumbnail)")
+				.row
+					.thumbnail-cover
+						.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
+				.row
+					.info.l-p-20
+						.title.h4.red(ng-bind-html="::post.title.rendered")
+						.description.f-lh-26.black(ng-bind-html="::post.excerpt.rendered")
+	.row.text-center
+		button.m-text.ui-load-more-button(is-loading="vm.isLoading" per-page="vm.perPage" ng-click="vm.loadMore()")
+			.glyphicon.glyphicon-repeat
+			.text Загрузить еще

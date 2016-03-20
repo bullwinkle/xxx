@@ -1,0 +1,17 @@
+var apiUrl;
+var Api = $resource(`${apiUrl}/`, {}, {});
+var Post = $resource(`${apiUrl}/posts/:id`, {id: ''}, {});
+var PostRevisions = $resource(`${apiUrl}/posts/:id/revisions`, {id: '@id'}, {});
+var PostType = $resource(`${apiUrl}/posts/types/:type`, {type: '@type'}, {});
+var PostStatuses = $resource(`${apiUrl}/posts/statuses`, {}, {});
+var PostComment = $resource(`${apiUrl}/posts/:id/comments/:comment`, {id: '@id', comment: '@comment'}, {});
+var PostMeta = $resource(`${apiUrl}/posts/:id/meta/:mid`, {id: '@id', mid: '@mid'}, {});
+var User = $resource(`${apiUrl}/users/:id`, {comment: '@comment'}, {});
+var Me = $resource(`${apiUrl}/users/me`, {}, {});
+var Media = $resource(`${apiUrl}/media/:id`, {id: '@id'}, {});
+var Taxonomy = $resource(`${apiUrl}/taxonomies/:taxonomy`, {mid: '@mid'}, {});
+var TaxonomyTerms = $resource(`${apiUrl}/taxonomies/:taxonomy/terms/:term`, {taxonomy: '@taxonomy', term: '@term'}, {});
+var Page = $resource(`${apiUrl}/pages/:id`, {taxonomy: '@taxonomy'}, {});
+var PageRevisions = $resource(`${apiUrl}/pages/:id/revisions`, {taxonomy: '@taxonomy'}, {});
+var PageComment = $resource(`${apiUrl}/pages/:id/comments/:comment`, {id: '@id', comment: '@comment'}, {});
+var PagePath = $resource(`${apiUrl}/pages/:path`, {path: '@path'}, {});

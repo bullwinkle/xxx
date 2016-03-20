@@ -1,0 +1,52 @@
+include ../../../assets/jade/mixins
+.container-fluid.l-container
+	.row
+		.col-xs-12.col-sm-4
+			// TODO show preview image if no gallery
+			.ui-images-gallery(ng-if="vm.product.acf.gallery")
+				.current-slide-container
+					//.controls
+					//	.prev
+					//	.next
+					ul
+						li.slick-slide(ng-repeat="figure in vm.product.acf.gallery"): .img( ng-style="{'background-image':'url({{figure.guid}})' }" )
+						//li.slick-slide(ng-repeat="figure in vm.product.acf.gallery"): img(ng-src="{{figure.guid}}")
+				.slides-container
+					//img.active(src= mainSrc)
+					ul
+						li.slick-slide(ng-repeat="figure in vm.product.acf.gallery"): .img( ng-style="{'background-image':'url({{figure.guid}})' }" )
+						//li.slick-slide(ng-repeat="figure in vm.product.acf.gallery"): img(ng-src="{{figure.guid}}")
+
+			.l-pb-20
+			//div	inCart: {{vm.inCart()}}
+			button.m-action.l-mb-20(ng-click="vm.updateInCart()")
+				span(ng-if="!vm.inCart()") Добавить
+				span(ng-if="vm.inCartBool") Удалить
+			.f-sz-12.grey-2.
+				Оплата производиться только в момент
+				получения заказа. Бронь бесплатная
+				и действует в течение пяти дней.
+
+		.col-xs-12.col-sm-8.article.m-product
+			.h2(ng-bind-html="vm.product.title.rendered")
+			.price
+				| Цена: &nbsp;
+				span.red(ng-bind="vm.product.acf.price | currency")
+			.h4.red Описание
+			div.post-content(ng-bind-html="vm.product.content.rendered")
+
+			div(ng-if="vm.product.acf.config")
+				.h4.red Характеристики
+				div(ng-bind-html="vm.product.acf.config")
+
+			div(ng-if="vm.product.categories.length")
+				| Категории:&nbsp;
+				span(ng-repeat="item in vm.product.categoriesLinks")
+					a(href="{{item.link}}" ng-bind="::item.name.toLowerCase()")
+					| {{$last?'':', '}}
+
+			div(ng-if="vm.product.tags.length")
+				| Теги:&nbsp;
+				span(ng-repeat="item in vm.product.tagsLinks")
+					a(href="{{item.link}}" ng-bind="::item.name.toLowerCase()")
+					| {{$last?'':', '}}

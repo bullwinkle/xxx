@@ -1,0 +1,86 @@
+mixin nw-logo
+	.nw-logo(class!=attributes.class)
+		a(href="/"): img.nw-logo-main(src="img/logo-white.svg")
+		.nw-logo-description
+			| ремонт мототехники
+
+mixin carousel-row(...imageUrls)
+	.container-fluid.ui-carousel
+		.l-container.viewport
+			.row
+				.col-xs-12
+					ul.items
+						each imgUrl in imageUrls
+							//li.img(style="background-image:url(#{imgUrl})")
+							li.item: img(src="#{imgUrl}")
+
+mixin carousel-connected(...imageUrls)
+	.ui-images-gallery
+		.current-slide-container
+			.controls
+				.prev
+				.next
+			ul
+				each imgUrl in imageUrls
+					//li.img(style="background-image:url(#{imgUrl})")
+					li: img(src="#{imgUrl}")
+
+		.slides-container
+			//img.active(src= mainSrc)
+			ul
+				each imgUrl in imageUrls
+					//li.img(style="background-image:url(#{imgUrl})")
+					li: img(src="#{imgUrl}")
+
+mixin article-preview-v
+	li.col-xs-12.col-sm-6.col-md-4.l-mb-20.l-pb-10.black.article.m-preview
+		a(href="/article.html").l-plr-15
+			.row
+				img.thumbnail(src="img/examples/1.jpg")
+			.row
+				.info.l-p-20
+					.title.h4.red.
+						Ducati рассказали о рекордном...
+					.description.f-lh-26.black.
+						По итогам первых шести месяцев «Дукати» удалось продать 32 600 мотоциклов, что на 22% больше, чем за аналогичный период...
+mixin article-preview-h
+	li.col-sm-6.l-p-10.article.m-preview-small
+		a.l-p-20(href="/howto.html")
+			.row.l-mb-20
+				.col-xs-4
+					img(src="img/examples/1.jpg")
+				.col-xs-8
+					.title.l-mb-10 Вечная молодость
+					.content.black.f-sz-14.
+						Корейская компания, выпускающая мотоциклы под маркой Hyosung, за последние несколько лет успела не раз сменить собственника. В 2007 году ее приобрел концерн S&T Group и переименовал...
+			.row
+				.col-xs-6.date.text-left.grey-2 07 июнь 2015
+				.col-xs-6.read-more.text-right
+					.link.td-u.f-w-900 Читать далее
+
+mixin article-product-preview(link)
+	li.col-xs-12.col-sm-6.col-md-4.l-plr-10.l-mb-20.l-pb-10.black.article.m-product-preview
+		a(href= link).l-plr-15
+			.row
+				img.thumbnail(src="img/examples/1.jpg")
+			.row
+				.info.l-p-20
+					.title.l-mb-5.
+						Ducati рассказали о рекордном...
+					.description.f-lh-26.black.
+						55 000 руб.
+					.td-u.f-w-900.l-inline.red.add-to-cart Забронировать
+
+mixin pagination
+	ul.row.ui-pagination
+		li.pagination-item.active: a(href="#") 1
+		li.pagination-item: a(href="#") 2
+		li.pagination-item: a(href="#") 3
+		li.pagination-item.last: a(href="#") 256
+
+mixin comments-block
+	.container-fluid.l-container
+		.row
+			.col-xs-12
+				h2 Комментарии
+

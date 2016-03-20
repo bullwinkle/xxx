@@ -1,0 +1,43 @@
+.ui-pagination
+	text-align: center
+	.pagination-item
+		position: relative
+		cursor: pointer
+		display: inline-block
+		min-width 28px
+		padding: 0 5px
+		background-color: white;
+		color $grey2
+		border-width 2px
+		border-style solid
+		border-color $grey1
+		margin-left: 2px
+
+		a
+			color $grey2
+			text-decoration: none;
+
+		&:hover
+			a
+				@extend a:hover
+
+
+		&.active
+			background: $grey1
+			color $black
+			border-width 0
+			a
+				color $black
+
+		&.last
+			$mLeft = 25px
+			margin-left: $mLeft
+			&.active
+				margin-left: $mLeft + 2px;
+
+			&:before
+				content "..."
+				position: absolute
+				bottom: -2px
+				left: - $mLeft
+				letter-spacing 2px

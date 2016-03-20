@@ -1,0 +1,35 @@
+.ui-carousel
+	background: url('~img/bg-grey.jpg')
+	max-width 100vw
+	overflow: hidden
+	margin: auto
+	padding 20px 0
+
+	@media screen and (min-width: $screen-sm-min)
+		padding 40px 0
+	@media screen and (min-width: $screen-md-min)
+		padding 40px 0
+
+	.slick-track
+		height: 70px
+
+	.items
+		margin: 0 40px
+
+		//&.slick-slider
+
+		.item
+			a
+				display: block
+				color transparent
+				height 70px
+				background-image: url('~img/examples/icon-1.png');
+				background-repeat: no-repeat;
+				background-position center center;
+				background-size contain
+
+				&:focus
+					outline none
+
+.galery:not(.slick-initialized)
+	visibility hidden

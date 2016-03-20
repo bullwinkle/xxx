@@ -1,0 +1,7 @@
+li(ng-repeat="category in vm.categoriesTree" ng-class="{'with-items': category.children.length}")
+	a.text(href="{{::category.link}}")
+		span.name(ng-bind="::category.name")
+		span.count(ng-if="::category.children.length" ng-bind="::category.children.length")
+
+
+	ul(ui-tree-list categories="category.children" ng-if="category.children.length")

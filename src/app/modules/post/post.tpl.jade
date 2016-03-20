@@ -1,0 +1,24 @@
+article.container-fluid.l-container.about-page.article.m-full
+	.row
+		.col-xs-12.text-right(ng-bind="vm.post.date | date:'dd.MM.yyyy'")
+	.row
+		.col-xs-12
+			.h1.text-center(ng-bind-html="vm.post.title.rendered")
+
+			div.post-content(ng-bind-html="vm.post.content.rendered")
+
+			div(ng-if="vm.post.categories.length")
+				| Категории:&nbsp;
+				span(ng-repeat="item in vm.post.categoriesLinks")
+					a(href="{{item.link}}" ng-bind="::item.name.toLowerCase()")
+					| {{$last?'':', '}}
+
+			div(ng-if="vm.post.tags.length")
+				| Теги:&nbsp;
+				span(ng-repeat="item in vm.post.tagsLinks")
+					a(href="{{item.link}}" ng-bind="::item.name.toLowerCase()")
+					| {{$last?'':', '}}
+
+//+comments-block
+//
+//+carousel-row

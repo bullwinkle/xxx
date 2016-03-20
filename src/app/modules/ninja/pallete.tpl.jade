@@ -1,0 +1,305 @@
+include ../../../assets/jade/mixins.jade
+
+#pallete
+	.h: h1 pallete #[small описание]
+
+	.h: h2 logos
+	pre.well.
+		.l-p-20.l-left
+			.nw-logo-black
+		.bg-black.l-p-20.l-left
+			.nw-logo-white
+		.bg-black.l-p-20.l-left
+			+nw-logo
+	.l-row
+		.l-p-20.l-left
+			.nw-logo-black
+		.bg-black.l-p-20.l-left
+			.nw-logo-white
+		.bg-black.l-p-20.l-left
+			+nw-logo
+
+	.h: h2 colors
+	.colors
+		.color.red
+			| .red
+		.color.grey-1
+			| .grey-1
+		.color.grey-2
+			| .grey-2
+		.color.grey
+			| .grey-3 ( .grey )
+		.color.black
+			| .grey-4 ( .black )
+		.color.blue-1
+			| .blue-1
+
+	.h: h2 typography
+
+	h1 heading 1
+		small small
+	h2 heading 2
+		small small
+	h3 heading 3
+		small small
+	h4 heading 4
+		small small
+	h5 heading 5
+		small small
+	h6 heading 6
+		small small
+
+	.l-mb-20
+	pre.well.
+		p Lorem ipsum dolor sit amet, an pro commodo quaerendum liberavisse. Eu vix utamur ornatus. His prima consectetuer ex. In tritani eruditi nec, vel id porro copiosae, postea ceteros lucilius pri ad...
+	p Lorem ipsum dolor sit amet, an pro commodo quaerendum liberavisse. Eu vix utamur ornatus. His prima consectetuer ex. In tritani eruditi nec, vel id porro copiosae, postea ceteros lucilius pri ad.
+	p Duo eu vidit mutat scripserit, at his nulla definitiones. Sumo torquatos reprehendunt quo ea, ad nam diam esse
+
+	pre.well.
+		ul.list
+			li list-item 1
+			li list-item 2
+			li list-item 3
+
+	ul.list
+		li list-item 1
+		li list-item 2
+		li list-item 3
+
+	div: a(href="#") link
+
+
+	.h: h2 inputs
+	div: input(type="text" placeholder="[type=text]")
+	div: input(type="tel" placeholder="[type=tel]")
+	div: input(type="number" placeholder="[type=number]")
+	div: input(type="date" placeholder="[type=date]")
+	div: input(type="datetime-local" placeholder="[type=datetime-local]")
+	div: textarea
+	pre.well.
+		ul
+			li
+				label.input
+					input(
+					type="checkbox"
+					name="checkbox[]"
+					value="value 1"
+					placeholder="[type=checkbox]"
+					id="checkbox1"
+					)
+					.input-view
+				label(for="checkbox1") Штука 1
+			...
+	ul
+		li
+			label.input
+				input(
+					type="checkbox"
+					name="checkbox[]"
+					value="value 1"
+					placeholder="[type=checkbox]"
+					id="checkbox1"
+					)
+				.input-view
+			label(for="checkbox1") Штука 1
+		li
+			label.input
+				input(
+					type="checkbox"
+					name="checkbox[]"
+					value="value 2"
+					placeholder="[type=checkbox]"
+					id="checkbox2"
+					)
+				.input-view
+			label(for="checkbox2") Штука 2
+		li
+			label.input
+				input(
+					type="checkbox"
+					name="checkbox[]"
+					value="value 3"
+					placeholder="[type=checkbox]"
+					id="checkbox3"
+					)
+				.input-view
+			label(for="checkbox3") Штука 3
+
+	pre.well.
+		ul
+			li
+				label.input
+					input(
+					type="radio"
+					name="radio"
+					value="value 1"
+					placeholder="[type=radio]"
+					id="value1"
+					)
+					.input-view
+				label(for="value1") Вариант 1
+			...
+	ul
+		li
+			label.input
+				input(
+				type="radio"
+				name="radio"
+				value="value 1"
+				placeholder="[type=radio]"
+				id="value1"
+				)
+				.input-view
+			label(for="value1") Вариант 1
+		li
+			label.input
+				input(
+				type="radio"
+				name="radio"
+				value="value 2"
+				placeholder="[type=radio]"
+				id="value2"
+				)
+				.input-view
+			label(for="value2") Вариант 2
+		li
+			label.input
+				input(
+				type="radio"
+				name="radio"
+				value="value 3"
+				placeholder="[type=radio]"
+				id="value3"
+				)
+				.input-view
+			label(for="value3") Вариант 3
+
+
+	.h: h2 buttons
+	pre.well.
+		button button
+		button.m-action button.m-action
+
+	button button
+	button.m-action button.m-action
+
+	.h: h2 table
+	pre.well.
+		table
+			caption some table description
+			thead
+				tr
+					td Lorem ipsum dolor sit amet
+					td two
+					td three
+					td four
+					td five
+			tfoot
+				tr
+					td Summary:
+					td foot two
+					td foot three
+					td foot four
+					td foot five
+			tbody
+				tr
+					th th Lorem ipsum dolor sit amet, no modo habemus
+					th th two
+					th th three
+					th th four
+					th th five
+				tr
+					td Lorem ipsum dolor sit amet, no modo habemus
+					td two
+					td three
+					td four
+					td five
+				tr
+					td Lorem ipsum dolor sit amet, no modo habemus
+					td two
+					td three
+					td four
+					td five
+				tr
+					td Lorem ipsum dolor sit amet, no modo habemus
+					td two
+					td three
+					td four
+					td five
+	table
+		caption some table description
+		thead
+			tr
+				td Lorem ipsum dolor sit amet
+				td two
+				td three
+				td four
+				td five
+		tfoot
+			tr
+				td Summary:
+				td foot two
+				td foot three
+				td foot four
+				td foot five
+		tbody
+			tr
+				th th Lorem ipsum dolor sit amet, no modo habemus
+				th th two
+				th th three
+				th th four
+				th th five
+			tr
+				td Lorem ipsum dolor sit amet, no modo habemus
+				td two
+				td three
+				td four
+				td five
+			tr
+				td Lorem ipsum dolor sit amet, no modo habemus
+				td two
+				td three
+				td four
+				td five
+			tr
+				td Lorem ipsum dolor sit amet, no modo habemus
+				td two
+				td three
+				td four
+				td five
+
+
+	.h: h2 Connected carousel
+	pre.well.
+		+carousel-connected()
+	+carousel-connected("img/kawasaki_ninja.jpg","img/examples/1.jpg","img/examples/2.jpg", "img/examples/3.jpg",	"img/examples/4.jpg",	"img/examples/5.jpg", "img/examples/6.jpg")
+
+	.h: h2 Row carousel
+	pre.well.
+		+carousel-row()
+	+carousel-row("img/kawasaki_ninja.jpg","img/examples/1.jpg","img/examples/2.jpg", "img/examples/3.jpg",	"img/examples/4.jpg",	"img/examples/5.jpg", "img/examples/6.jpg")
+
+	.h: h2 photo list
+	pre.well.
+		ul.ui-photo-list
+			li.photo-wrapper
+				div.photo: .icon.glyphicon.glyphicon-fullscreen
+			li.photo-wrapper
+				div.photo: .icon.glyphicon.glyphicon-fullscreen
+			li.photo-wrapper
+				div.photo: .icon.glyphicon.glyphicon-fullscreen
+			li.photo-wrapper
+				div.photo: .icon.glyphicon.glyphicon-fullscreen
+			li.photo-wrapper
+				div.photo: .icon.glyphicon.glyphicon-fullscreen
+	ul.ui-photo-list
+		li.photo-wrapper
+			div.photo: .icon.glyphicon.glyphicon-fullscreen
+		li.photo-wrapper
+			div.photo: .icon.glyphicon.glyphicon-fullscreen
+		li.photo-wrapper
+			div.photo: .icon.glyphicon.glyphicon-fullscreen
+		li.photo-wrapper
+			div.photo: .icon.glyphicon.glyphicon-fullscreen
+		li.photo-wrapper
+			div.photo: .icon.glyphicon.glyphicon-fullscreen

@@ -1,0 +1,123 @@
+.alignleft {
+	float: left;
+	width: auto !important;
+	margin: 0.375em 1.75em 1.75em 0;
+}
+
+.alignright {
+	float: right;
+	width: auto !important;
+	margin: 0.375em 0 1.75em 1.75em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	width: auto !important;
+	margin: 0 auto 1.75em;
+}
+
+blockquote.alignleft {
+	margin: 0.3157894737em 1.4736842105em 1.473684211em 0;
+}
+
+blockquote.alignright {
+	margin: 0.3157894737em 0 1.473684211em 1.4736842105em;
+}
+
+blockquote.aligncenter {
+	margin-bottom: 1.473684211em;
+}
+
+
+.article.m
+	&-preview
+	&-preview-small
+	&-product-preview
+		display: block
+		color inherit
+		transition z-index 0s linear .2s
+		z-index 1
+
+		&:hover
+			z-index 20
+			transition z-index 0s linear 0s
+
+		&:focus
+			color $blue1
+
+		& > a
+			width: 100%
+			height: 100%
+			display block
+			text-decoration: none
+			transition transform .12s ease-in-out, box-shadow .15s ease, background-color .11s ease-in-out, color .2s ease-in-out
+			background-color rgba(235,235,235,0.3)
+			box-shadow 0 0 1px 0 transparent
+			transform scale3d(1,1,1) translate3d(0,0,0)
+			baseBoxShadow()
+			&:hover
+				hoverBoxShadow()
+				transition transform .15s ease-in-out, box-shadow .15s ease, background-color .11s ease-in-out, color .2s ease-in-out
+				background-color rgba(255,255,255,1)
+				transform scale3d(1.05,1.05,1.05) translate3d(0,0,0)
+
+		.thumbnail-cover
+			position: relative
+			width: 100%
+			overflow hidden
+			
+		.thumbnail
+			background-image: url('~img/no-image.jpg');
+			background-position: center;
+			background-size: cover;
+			width: 100%
+			padding-top: 66.66%
+
+		.title
+			lineClamp(1, 24px)
+
+		.description
+			width: 100%
+			position: relative;
+			lineClamp()
+
+		a.more-link
+			display: none !important
+
+	&-preview
+	&-preview-small
+		.title
+			h3()
+			color $red
+		&:hover
+			.td-u
+				text-decoration: none
+
+	&-product-preview
+		.title
+			h3()
+			color $black
+			margin-bottom: 5px
+
+		.add-to-cart:hover
+			@extend a:hover
+
+	&-howto
+	&-full
+	&-product
+		img
+		.media
+			width: 100%
+			margin-bottom: 20px
+
+		.post-content
+			padding-bottom: 30px;
+			border-bottom: 1px dashed;
+			margin-bottom: 20px;
+
+
+
+	//&-full
+		//.image-broken
+		//	display none

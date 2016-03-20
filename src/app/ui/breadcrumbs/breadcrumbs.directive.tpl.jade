@@ -1,0 +1,27 @@
+ul.breadcrumb.list-inline
+	li(
+	ng-if="breadcrumbs.length > 1"
+	ng-repeat='crumb in breadcrumbs'
+	ng-class="{ active: $last}"
+	)
+
+		a(
+		ng-if='!$last && crumb.url && !crumb.route'
+		ng-class="{ 'glyphicon glyphicon-home': $first }"
+		href="{{crumb.url}}"
+		)
+			span( ng-if="!$first" ) {{ crumb.displayName }}
+
+		a(
+		ng-if='!$last && crumb.route'
+		ng-class="{ 'glyphicon glyphicon-home': $first }"
+		ui-sref='{{ crumb.route }}'
+		)
+			span( ng-if="!$first" ) {{ crumb.displayName }}
+
+
+		span(
+		ng-if="$last"
+		ng-class="{ 'glyphicon glyphicon-home': $first }"
+		)
+			span( ng-if="!$first" ) {{ crumb.displayName }}

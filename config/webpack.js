@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
 import ExtractPlugin from 'extract-text-webpack-plugin';
@@ -8,6 +9,11 @@ const DIST = CWD + '/dist';
 const TEST = CWD + '/test';
 const PAGES = SRC + '/pages';
 const PUBLIC = '/';
+
+const env = process.env.ENV || 'PROD';
+const ENV = require(path.join(process.cwd(),'env',env));
+const DEV = env == 'DEV';
+const PROD = env == 'PROD';
 
 export default function ({dev, hot, test, port}) {
 
@@ -33,14 +39,16 @@ export default function ({dev, hot, test, port}) {
 			publicPath: PUBLIC
 		},
 		resolve: {
-			extensions: ['', '.js', '.json'],
+			extensions: ['', '.js', '.coffee', '.json', '.styl', '.jade'],
 			modulesDirectories: [
 				'node_modules',
 				SRC,
 				SRC + '/modules'
 			],
 			alias: {
-				assets: SRC + '/assets'
+				assets: SRC + '/assets',
+				img: SRC + '/assets/img',
+				font: SRC + '/assets/font'
 			}
 		},
 		module: {
@@ -75,7 +83,10 @@ export default function ({dev, hot, test, port}) {
 			}]
 		},
 		plugins: [
-			new ExtractPlugin(CSS_NAME)
+			new ExtractPlugin(CSS_NAME),
+			new webpack.DefinePlugin({
+				ENV: JSON.stringify(ENV)
+			})
 		]
 	};
 

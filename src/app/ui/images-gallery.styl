@@ -1,0 +1,94 @@
+.ui-images-gallery
+	width: 100%
+	position: relative
+
+
+	//.slick-arrow
+	//.slick-prev,.spick-next
+
+	.controls
+		position: absolute
+		bottom: 20px
+		left: 20px
+		z-index 10
+
+		.prev,.next
+			$side = 28px
+			cursor pointer
+			width: $side
+			height: $side
+			line-height: $side + 1
+			text-align: center
+			margin-right: 20px
+			float: left
+			background: rgba(255,255,255,0.6);
+			border-radius 200px
+			transform scale(1)
+			box-shadow 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+			transition box-shadow .1s ease-in-out, transform .1s ease-in-out
+			@extend .glyphicon
+
+			&:hover
+				transform scale(1.1)
+				box-shadow 0 2px 3px 0 rgba(0, 0, 0, 0.5)
+
+		//.prev
+		//	@extend .glyphicon-menu-left
+
+		//.next
+		//	@extend .glyphicon-menu-right
+
+	.img
+		background-repeat no-repeat
+		height: 100%
+
+	.current-slide-container
+		margin-bottom: 20px
+		max-height 450px
+		overflow hidden
+		position: relative
+		img, .img
+			width: 100%
+			margin: 0 !important
+			padding: 0 !important
+		img
+			height: auto
+		.img
+			background-size cover
+			background-position center
+
+		.slick-track
+			height: 200px
+			//height: auto
+
+	.slides-container
+		text-align: left
+		img, .img
+			cursor pointer
+			margin-right: 5px
+			margin-bottom: 10px
+			//width: 100px
+			transform scale3d(1,1,1)
+			outline 0px solid $red
+			z-index 1
+			transition transform .1s ease-in-out, outline .1s ease-in-out
+
+			&.active
+				outline 2px solid $red
+				transform scale3d(1,1,1)
+			&:hover:not(.active)
+				z-index 10
+				transform scale3d(1.1,1.1,1)
+
+		.slick-slide:last-child
+			.img
+				margin-right: 0
+
+		.img
+			background-size cover
+			background-position center
+
+
+		.slick-track
+			height: 100px
+			padding 10px 0

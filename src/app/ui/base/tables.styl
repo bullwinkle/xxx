@@ -1,0 +1,60 @@
+table
+	width: 100%
+	//line-height: 1.2;
+	margin-bottom: 40px
+	font-size: 14px
+	line-height normal
+
+	caption
+		font-size: 12px
+		color $grey2
+		font-weight 100
+		text-align: right
+		margin-bottom: 10px
+		padding 0 12px
+
+	tr
+		border-bottom 1px solid $grey2
+
+	td, th
+		padding: 28px 12px
+		text-align: left
+		width: 1%
+		&:last-child
+			text-align: right
+
+	thead
+		color $grey2
+		font-size: 16px
+		font-weight: 400;
+		border-bottom 1px solid $grey2
+
+	tfoot
+		td
+			font-weight: 600
+
+	tbody
+		tr
+			&:hover
+				background: rgba(240,240,240,1)
+
+			&:nth-child(2n)
+				background: rgba(240,240,240,0.6)
+
+			&:nth-child(2n):hover
+				background: rgba(240,240,240,1)
+
+	&.m-service
+		min-width 500px
+		td
+			width: 2%
+			&:first-child
+				width: 0.8%
+				//padding-left 10px
+			&:last-child
+				width: 0.5%
+				//padding-right 10px
+
+
+
+

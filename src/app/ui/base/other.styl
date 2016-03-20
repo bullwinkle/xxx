@@ -1,0 +1,53 @@
+a
+	color $red
+	text-decoration: underline
+	&:hover
+		text-decoration: none
+		color lighten($red, 40%)
+	&:focus
+		text-decoration: underline
+		color lighten($red, 40%)
+		//outline: thin dotted
+		outline: 5px auto lighten($red, 40%)
+		outline-offset: 1px
+
+ul, ol
+	margin-bottom: 22px
+
+ul.list, ol.list
+	margin-left: 34px
+	margin-top: -11px
+	li
+		$liMargin = 30px
+		margin-left $liMargin
+		position: relative
+		padding-top: 6px;
+		padding-bottom: 6px;
+		&:before
+			$side = 4px
+			content ""
+			position: absolute
+			width: $side
+			height: $side
+			top 50%
+			left - $liMargin
+			margin-top - unit($side/2, 'px')
+			border-radius 100px
+			background $black
+
+p
+	text()
+	margin-bottom: 22px
+
+//p + ui, p + ol
+//	margin-bottom: 11px
+			
+			
+.shop-control-panel
+	background: $grey1;
+
+//.image-broken
+	//max-height 200px
+	//background: url("img/no-image.jpg") no-repeat;
+	//background-size cover
+	//background-position center

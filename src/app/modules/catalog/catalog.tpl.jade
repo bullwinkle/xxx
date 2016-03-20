@@ -1,0 +1,39 @@
+.container-fluid.l-container
+	.row
+		.col-xs-12: h1.h2 Категории
+	.row
+		.cod-xs-12.col-md-3(style="z-index:50")
+
+			select.visible-xs-block.visible-sm-block.l-mb-30(ng-model="vm.categoryToGoOn" ng-change="vm.goToUrl()" ng-options="category.name for category in vm.categories")
+
+			ul.ui-tree-list.hidden-xs.hidden-sm(
+				ui-tree-list
+				categories="vm.categories"
+				root="catalog"
+				findBy="slug"
+				parent-id="parent"
+				)
+
+		.col-xs-12.col-md-9(
+			ui-view="productList"
+			)
+
+.shop-control-panel
+	.container-fluid.l-container
+		.row
+			.col-xs-12.col-sm-6.col-sm-offset-2.text-center.l-mb-20
+				span.f-sz-22
+					| Выбрано &nbsp
+					a.red(href="/cart")
+						span.product-count(ng-bind="vm.goods.length")
+						| &nbsp;
+						ng-pluralize(
+							count="vm.goods.length"
+							when="{'one': 'товар','few':'товара','many': 'товаров'}"
+							)
+					| &nbsp
+				span.clear-cart.f-sz-14(ng-click="vm.goods.reset()") Очистить
+			.col-xs-12.col-sm-4.text-center
+				a.button.m-action.m-wide(ui-sref="app.cart") К заказу
+
+//+carousel-row
