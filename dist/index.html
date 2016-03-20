@@ -1,0 +1,111 @@
+
+<!-- NINJA!-->
+<html>
+  <head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noarchive">
+    <title>NINJA`S WORKSHOP</title>
+  </head>
+  <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di>
+    <div class="l">
+      <div class="l-main">
+        <div class="l-header">
+          <div ui-view="header" class="container-fluid l-container">
+            <div class="row">
+              <div class="nw-info col-sm-4 col-sm-offset-8">
+                <div class="nw-logo"><a href="/"><img src="/logo-white-4d0a529cb19c5732f8c460eb1f360b5e.svg" class="nw-logo-main"></a>
+                  <div class="nw-logo-description">ремонт мототехники</div>
+                </div>
+                <div class="phone l-midline white l-mb-20">
+                  <div class="icon glyphicon glyphicon-earphone"></div>
+                  <div class="number f-sz-22 f-w-100">+7 (990) 123 23 45</div>
+                </div>
+                <button class="m-action">задать вопрос</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="l-main-navigation">
+          <div class="l-container">
+            <ul class="l-main-navigation-items l-flex overflow-x-hidden">
+              <li ng-repeat="nav in ninja.mainMenu" ui-link-active="::nav.url" ng-class="{'active': isActive(nav.url)}" class="l-main-navigation-item"><a ng-href="{{ ::nav.url }}" ng-bind="::nav.title"></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="l-content">
+          <div class="container-fluid l-container l-ptb-30">
+            <div class="l-flex l-plr-10">
+              <div ui-breadcrumbs displayname-property="data.displayName" display-pathname-property="data.displayPathname" abstract-proxy-property="data.proxyName" class="l-flex-1"></div>
+              <form name="globalSearch" ng-submit="ninja.submitGlobalSearch(ninja.globalSearchQuery)" class="global-search-form">
+                <div class="global-search-input">
+                  <input type="search" results="5" name="s" placeholder="Поиск" ng-model="ninja.globalSearchQuery" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
+                </div>
+                <input type="submit" ng-disabled="!ninja.globalSearchQuery" value="Поиск" class="hide">
+              </form>
+            </div>
+          </div>
+          <div ui-view="content">
+            <div class="container-fluid l-container">
+              <div class="text-center h2">Загрузка...</div>
+            </div>
+          </div>
+        </div>
+        <!--.ui-carousel-->
+        <!--	.container-fluid.l-container.viewport-->
+        <!--		.row-->
+        <!--			.col-xs-12-->
+        <!--				slick.items(-->
+        <!--					infinite="true"-->
+        <!--					slides-to-show="8"-->
+        <!--					slides-to-scroll="8"-->
+        <!--					speed="300"-->
+        <!--					swipetoslide="true"-->
+        <!--					respondto="min"-->
+        <!--					autoplay="true"-->
+        <!--					autoplayspeed="2000"-->
+        <!--				)-->
+        <!--					- var iconsQ = new Array(20)-->
+        <!--					each val, i in iconsQ-->
+        <!--						.item: a(href="#") item #{i}-->
+        <div ui-view="footer" class="l-footer">
+          <div class="container-fluid l-container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 logo-wrapper">
+                <div class="grey">
+                  <div class="nw-logo"><a href="/"><img src="/logo-white-4d0a529cb19c5732f8c460eb1f360b5e.svg" class="nw-logo-main"></a>
+                    <div class="nw-logo-description">ремонт мототехники</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 l-ptb-15">
+                <ul class="row menu">
+                  <li ng-repeat="nav in ninja.mainMenu" ui-link-active="::nav.url" ng-class="{'active': isActive(nav.url)}" class="l-plr-20 col-xs-6"><a href="{{ ::nav.url }}" ng-bind="::nav.title"></a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-3 col-sm-offset-1 l-ptb-15">
+                <div class="contacts grey-3 row">
+                  <div class="col-xs-6 col-sm-12 white heading">Телефон:</div>
+                  <div class="col-xs-6 col-sm-12">+7 (960) 123 23 45</div>
+                  <div class="col-xs-6 col-sm-12 white heading">Адрес:</div>
+                  <div class="col-xs-6 col-sm-12 address">Москва, м.Отрадное, <br> Сигнальный проезд 18</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 l-pt-30 l-pb-20">
+                <div class="copyright f-sz-12 grey">©
+                  <script type="text/javascript">document.write((new Date()).getFullYear())</script> Ninja Workshop. All right reserved.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ui-view="modal" class="l-global-overlay">l-global-overlay</div>
+      </div>
+    </div>
+  <script src="/vendor.js"></script><script src="/app.js"></script></body>
+</html>
