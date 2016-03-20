@@ -135,10 +135,13 @@ for val in 10 15 20 25 30 40 50
 		vertical-align middle
 		display table-cell
 
-.l-flex
-	display flex
-	flex-flow row wrap
-	justify-content center
+.l-flex {
+	border-radius: 5px;
+	display: flex;
+	box-flex: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
 
 for flex in 1 2 3 4 5
 	.l-flex-{flex}
