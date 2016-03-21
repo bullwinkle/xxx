@@ -24,8 +24,9 @@ html
 						+nw-logo
 						.phone.l-midline.white.l-mb-20
 							.icon.glyphicon.glyphicon-earphone
-							.number.f-sz-22.f-w-100 +7 (990) 123 23 45
-						button.m-action задать вопрос
+							.number.f-sz-22.f-w-100
+								a(href="tel:+79037212609") +7 (903) 721-26-09
+						button.m-action(ng-click="ninja.showModal()") задать вопрос
 
 		.l-main-navigation
 			.l-container
@@ -109,7 +110,8 @@ html
 					.col-xs-12.col-sm-3.col-sm-offset-1.l-ptb-15
 						.contacts.grey-3.row
 							.col-xs-6.col-sm-12.white.heading Телефон:
-							.col-xs-6.col-sm-12 +7 (960) 123 23 45
+							.col-xs-6.col-sm-12
+								a(href="tel:+79037212609") +7 (903) 721-26-09
 							.col-xs-6.col-sm-12.white.heading Адрес:
 							.col-xs-6.col-sm-12.address Москва, м.Отрадное, #[br] Сигнальный проезд 18
 				.row
@@ -119,5 +121,52 @@ html
 							script(type="text/javascript") document.write((new Date()).getFullYear())
 							|  Ninja Workshop. All right reserved.
 
-		.l-global-overlay(ui-view="modal")
-			| l-global-overlay
+		.l-global-overlay(
+				ui-view="modal"
+				ng-click="ninja.closeModal($event)"
+			)
+			.ui-modal(
+				ng-click="$event.stopPropagation()"
+			)
+				.ui-modal-close.glyphicon.glyphicon-remove(
+					ng-click="ninja.closeModal($event)"
+				)
+				form(
+					id="contactForm"
+					name="ninja.contactForm"
+					ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)"
+				)
+					.h3.red.l-mb-30 Задать вопрос
+					input(
+						type="text"
+						placeholder="Имя"
+						name="name"
+						ng-model="name"
+					)
+					input(
+						type="text"
+						placeholder="Телефон"
+						name="phone"
+						ng-model="phone"
+					)
+					input(
+						type="email"
+						placeholder="E-mail"
+						name="email"
+						ng-model="email"
+						required
+					)
+					textarea(
+						placeholder="Какой у вас вопрос?"
+						name="question"
+						ng-model="question"
+						required="required"
+					)
+					div {{ninja.contactForm.$pending}}
+					.t-center
+						button.m-action(
+							type="submit"
+							ng-disabled="ninja.contactForm.$invalid && ninja.contactForm.$pristine"
+							)
+							span(ng-if="ninja.contactForm.$submitted") вопрос отправлен!
+							span(ng-if="!ninja.contactForm.$submitted") задать вопрос

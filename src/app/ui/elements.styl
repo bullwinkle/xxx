@@ -20,10 +20,6 @@
 		&:before
 			font-weight: 100
 	input
-		// TODO move colors to color scheme
-		$error = rgba(197,2,10,0.8)
-		$success = rgba(41, 140, 41, 0.53)
-
 		border-radius 2px
 		margin 0
 		box-shadow 0 -10px 0px -10px $error inset
@@ -32,6 +28,7 @@
 		transition width .2s ease-in-out, padding-right .2s ease-in-out, box-shadow .4s ease-in-out
 		background: transparent;
 		&:not(:focus)
+			box-shadow 0 0 0 0 $error inset
 			width: 46px
 			padding-right: 34px
 
