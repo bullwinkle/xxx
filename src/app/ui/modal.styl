@@ -1,0 +1,50 @@
+$duration = 0.2s
+$modalDelay = 0.1s
+
+.l-global-overlay
+	position: absolute;
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: rgba(0, 0, 0, 0);
+	padding 130px 40px 40px
+	overflow-x hidden
+	overflow-y auto
+	z-index 1001
+	cursor default
+	text-align: center
+	visibility: hidden
+	transition visibility 0s ease $duration + $modalDelay + 0.02s, background-color $duration ease-in-out $modalDelay
+
+	&.is-visible
+		background-color: rgba(0, 0, 0, 0.5);
+		visibility: visible
+		transition visibility 0s ease 0s, background-color .2s ease-in-out
+
+	.ui-modal
+		position: relative;
+		padding: 60px 20px 40px;
+		max-width 600px
+		display: inline-block
+		background: white
+		transform-origin 50% 50%
+		transform scale(1.1, 1.1)
+		opacity 0
+		cursor default
+		transition opacity $duration ease-in-out 0s, transform $duration ease-in-out 0s
+		&-close
+			position: absolute;
+			top: 0px
+			right: 0px
+			padding: 20px
+			cursor pointer
+			color: #333
+			transition color $duration ease-in-out
+			&:hover
+				color: $red
+
+	&.is-visible .ui-modal
+		opacity 1
+		transform scale(1, 1)
+		transition opacity .2s ease-in-out $modalDelay, transform $duration ease-in-out $modalDelay

@@ -18,6 +18,12 @@ input
 textarea
 select
 	input()
+	&[required]:not(.ng-valid)
+		box-shadow 0 -10px 10px -10px $error inset
+	&.ng-dirty.ng-invalid
+		box-shadow 0 -10px 10px -10px $error inset
+	&.ng-dirty.ng-valid
+		box-shadow 0 -10px 8px -10px $success inset
 
 textarea
 	resize vertical
