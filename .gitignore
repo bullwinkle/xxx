@@ -4,5 +4,7 @@
 *.sublime-project
 *.sublime-workspace
 
+dist/
 docs/
+api/db/
 node_modules/

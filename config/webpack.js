@@ -1,4 +1,4 @@
-import path from 'path';
+import autoprefixer from 'autoprefixer';
 import webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
 import ExtractPlugin from 'extract-text-webpack-plugin';
@@ -10,10 +10,8 @@ const TEST = CWD + '/test';
 const PAGES = SRC + '/pages';
 const PUBLIC = '/';
 
-const env = process.env.ENV || 'PROD';
-const ENV = require(path.join(process.cwd(),'env',env));
-const DEV = env == 'DEV';
-const PROD = env == 'PROD';
+const ENV_NAME = process.env.ENV;
+const ENV_CONFIG = ENV_NAME ? require(`./env/${ENV_NAME}`) : {};
 
 export default function ({dev, hot, test, port}) {
 
@@ -30,8 +28,8 @@ export default function ({dev, hot, test, port}) {
 		debug: dev,
 		devtool: DEVTOOL,
 		entry: {
-			vendor: ['./src/vendor/vendor'],
-			app: ['./src/app/app']
+			'vendor': ['./src/vendor/vendor.module'],
+			'app': ['./src/app/app.module']
 		},
 		output: {
 			path: DIST,
@@ -39,16 +37,10 @@ export default function ({dev, hot, test, port}) {
 			publicPath: PUBLIC
 		},
 		resolve: {
-			extensions: ['', '.js', '.coffee', '.json', '.styl', '.jade'],
-			modulesDirectories: [
-				'node_modules',
-				SRC,
-				SRC + '/modules'
-			],
+			extensions: ['', '.js', '.json'],
+			modulesDirectories: ['node_modules', SRC],
 			alias: {
-				assets: SRC + '/assets',
-				img: SRC + '/assets/img',
-				font: SRC + '/assets/font'
+				assets: SRC + '/assets'
 			}
 		},
 		module: {
@@ -58,12 +50,11 @@ export default function ({dev, hot, test, port}) {
 				loader: 'ng-annotate!babel!eslint!jscs'
 			}, {
 				test: /\.css$/,
-				include: SRC,
 				loader: ExtractPlugin.extract('css?sourceMap')
 			}, {
 				test: /\.styl$/,
 				include: SRC,
-				loader: ExtractPlugin.extract('css?sourceMap!stylus!stylint')
+				loader: ExtractPlugin.extract('css?sourceMap!stylus!postcss!stylus')
 			}, {
 				test: /\.html$/,
 				include: SRC,
@@ -80,16 +71,18 @@ export default function ({dev, hot, test, port}) {
 			}, {
 				test: /\.(svg|png|jpg|gif|eot|ttf|woff|woff2)$/,
 				loader: `url-loader?limit=${ASSET_CACHE}&name=${ASSET_NAME}`
-			}]
+			}],
+			noParse: []
 		},
-		stylus: {
-		  use: [require('nib')()],
-		  import: ['~nib/lib/nib/index.styl']
-		},
+		postcss: [
+			autoprefixer({
+				browsers: ['last 2 versions']
+			})
+		],
 		plugins: [
 			new ExtractPlugin(CSS_NAME),
 			new webpack.DefinePlugin({
-				ENV: JSON.stringify(ENV)
+				ENV: JSON.stringify(ENV_CONFIG)
 			})
 		]
 	};
@@ -97,19 +90,12 @@ export default function ({dev, hot, test, port}) {
 	if (hot) {
 		const entry = `webpack-dev-server/client`;
 		const query = `http://localhost:${port}/`;
-		cfg.entry.app.unshift(`${entry}?${query}`);
-		cfg.devServer = {
-			port,
-			hot: true,
-			stats: {
-				colors: true
-			}
-		};
+		cfg.entry.app.push(`${entry}?${query}`);
 	}
 
 	if (test) {
 		cfg.watch = false;
-		cfg.cache = false;
+		//cfg.cache = false;
 		cfg.debug = false;
 	}
 
@@ -120,7 +106,6 @@ export default function ({dev, hot, test, port}) {
 				template: 'src/pages/index.jade'
 			})
 		);
-
 	}
 
 	if (!dev && !test) {

@@ -2,7 +2,8 @@
 	"extends": "eslint:recommended",
 	"parser": "babel-eslint",
 	"globals": {
-		"angular": true
+		"angular": true,
+		"ENV": true
 	},
 	"env": {
 		"jasmine": true,

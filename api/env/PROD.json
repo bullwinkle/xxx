@@ -1,0 +1,12 @@
+{
+	"apps" : [{
+		"name": "starter-api-prod",
+		"watch": false,
+		"script": "api/index.js",
+		"env": {
+			"NODE_ENV": "production",
+			"PORT": 9101
+		}
+	}]
+}
+
