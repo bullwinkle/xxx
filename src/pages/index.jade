@@ -16,110 +16,111 @@ html
 
 		title NINJA`S WORKSHOP
 
-	body(ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di): .l: .l-main
-		.l-header
-			.container-fluid.l-container(ui-view="header")
-				.row
-					.nw-info.col-sm-4.col-sm-offset-8
-						+nw-logo
-						.phone.l-midline.white.l-mb-20
-							.icon.glyphicon.glyphicon-earphone
-							.number.f-sz-22.f-w-100
-								a(href="tel:+79037212609") +7 (903) 721-26-09
-						button.m-action(ng-click="ninja.showModal()") задать вопрос
-
-		.l-main-navigation
-			.l-container
-				ul.l-main-navigation-items.l-flex.overflow-x-hidden
-					li.l-main-navigation-item(
-						ng-repeat="nav in ninja.mainMenu"
-						ui-link-active="::nav.url"
-						ng-class="{'active': isActive(nav.url)}"
-					)
-						a(ng-href="{{ ::nav.url }}" ng-bind="::nav.title")
-
-		.l-content
-			.container-fluid.l-container.l-ptb-30
-				.l-flex.l-plr-10
-					.l-flex-1(
-						ui-breadcrumbs
-						displayname-property="data.displayName"
-						display-pathname-property="data.displayPathname"
-						abstract-proxy-property="data.proxyName"
-					)
-					form.global-search-form(
-						name="globalSearch"
-						ng-submit="ninja.submitGlobalSearch(ninja.globalSearchQuery)"
-					)
-						.global-search-input
-							input.l-w-100(
-								type="search"
-								results="5"
-								name="s"
-								placeholder="Поиск"
-								ng-model="ninja.globalSearchQuery"
-								ng-required="true"
-								ng-trim="true"
-							)
-							span.glyphicon.glyphicon-search.grey-2.l-w20.l-h20
-						input.hide(
-						type="submit"
-						ng-disabled="!ninja.globalSearchQuery"
-						value="Поиск"
-						)
-
-			//- ========== CONTENT UI-VIEW ==========
-			div(ui-view="content")
-				.container-fluid.l-container
-					.text-center.h2 Загрузка...
-
-		//.ui-carousel
-		//	.container-fluid.l-container.viewport
-		//		.row
-		//			.col-xs-12
-		//				slick.items(
-		//					infinite="true"
-		//					slides-to-show="8"
-		//					slides-to-scroll="8"
-		//					speed="300"
-		//					swipetoslide="true"
-		//					respondto="min"
-		//					autoplay="true"
-		//					autoplayspeed="2000"
-		//				)
-		//					- var iconsQ = new Array(20)
-		//					each val, i in iconsQ
-		//						.item: a(href="#") item #{i}
-
-		//- ========== FOOTER UI-VIEW ==========
-		.l-footer(ui-view="footer")
-			.container-fluid.l-container
-				.row
-					.col-xs-12.col-sm-4.col-md-4.col-lg-4.logo-wrapper
-						.grey
+	body(ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di)
+		.l: .l-main
+			.l-header
+				.container-fluid.l-container(ui-view="header")
+					.row
+						.nw-info.col-sm-4.col-sm-offset-8
 							+nw-logo
-					.col-xs-12.col-sm-4.l-ptb-15
-						ul.row.menu
-							li.l-plr-20.col-xs-6(
-								ng-repeat="nav in ninja.mainMenu"
-								ui-link-active="::nav.url"
-								ng-class="{'active': isActive(nav.url)}"
-							)
-								a(href="{{ ::nav.url }}" ng-bind="::nav.title")
+							.phone.l-midline.white.l-mb-20
+								.icon.glyphicon.glyphicon-earphone
+								.number.f-sz-22.f-w-100
+									a(href="tel:+79037212609") +7 (903) 721-26-09
+							button.m-action(ng-click="ninja.showModal()") задать вопрос
 
-					.col-xs-12.col-sm-3.col-sm-offset-1.l-ptb-15
-						.contacts.grey-3.row
-							.col-xs-6.col-sm-12.white.heading Телефон:
-							.col-xs-6.col-sm-12
-								a(href="tel:+79037212609") +7 (903) 721-26-09
-							.col-xs-6.col-sm-12.white.heading Адрес:
-							.col-xs-6.col-sm-12.address Москва, м.Отрадное, #[br] Сигнальный проезд 18
-				.row
-					.col-xs-12.col-sm-4.l-pt-30.l-pb-20
-						.copyright.f-sz-12.grey
-							| ©
-							script(type="text/javascript") document.write((new Date()).getFullYear())
-							|  Ninja Workshop. All right reserved.
+			.l-main-navigation
+				.l-container
+					ul.l-main-navigation-items.l-flex.overflow-x-hidden
+						li.l-main-navigation-item(
+							ng-repeat="nav in ninja.mainMenu"
+							ui-link-active="::nav.url"
+							ng-class="{'active': isActive(nav.url)}"
+						)
+							a(ng-href="{{ ::nav.url }}" ng-bind="::nav.title")
+
+			.l-content
+				.container-fluid.l-container.l-ptb-30
+					.l-flex.l-plr-10
+						.l-flex-1(
+							ui-breadcrumbs
+							displayname-property="data.displayName"
+							display-pathname-property="data.displayPathname"
+							abstract-proxy-property="data.proxyName"
+						)
+						form.global-search-form(
+							name="globalSearch"
+							ng-submit="ninja.submitGlobalSearch(ninja.globalSearchQuery)"
+						)
+							.global-search-input
+								input.l-w-100(
+									type="search"
+									results="5"
+									name="s"
+									placeholder="Поиск"
+									ng-model="ninja.globalSearchQuery"
+									ng-required="true"
+									ng-trim="true"
+								)
+								span.glyphicon.glyphicon-search.grey-2.l-w20.l-h20
+							input.hide(
+							type="submit"
+							ng-disabled="!ninja.globalSearchQuery"
+							value="Поиск"
+							)
+
+				//- ========== CONTENT UI-VIEW ==========
+				div(ui-view="content")
+					.container-fluid.l-container
+						.text-center.h2 Загрузка...
+
+			//.ui-carousel
+			//	.container-fluid.l-container.viewport
+			//		.row
+			//			.col-xs-12
+			//				slick.items(
+			//					infinite="true"
+			//					slides-to-show="8"
+			//					slides-to-scroll="8"
+			//					speed="300"
+			//					swipetoslide="true"
+			//					respondto="min"
+			//					autoplay="true"
+			//					autoplayspeed="2000"
+			//				)
+			//					- var iconsQ = new Array(20)
+			//					each val, i in iconsQ
+			//						.item: a(href="#") item #{i}
+
+			//- ========== FOOTER UI-VIEW ==========
+			.l-footer(ui-view="footer")
+				.container-fluid.l-container
+					.row
+						.col-xs-12.col-sm-4.col-md-4.col-lg-4.logo-wrapper
+							.grey
+								+nw-logo
+						.col-xs-12.col-sm-4.l-ptb-15
+							ul.row.menu
+								li.l-plr-20.col-xs-6(
+									ng-repeat="nav in ninja.mainMenu"
+									ui-link-active="::nav.url"
+									ng-class="{'active': isActive(nav.url)}"
+								)
+									a(href="{{ ::nav.url }}" ng-bind="::nav.title")
+
+						.col-xs-12.col-sm-3.col-sm-offset-1.l-ptb-15
+							.contacts.grey-3.row
+								.col-xs-6.col-sm-12.white.heading Телефон:
+								.col-xs-6.col-sm-12
+									a(href="tel:+79037212609") +7 (903) 721-26-09
+								.col-xs-6.col-sm-12.white.heading Адрес:
+								.col-xs-6.col-sm-12.address Москва, м.Отрадное, #[br] Сигнальный проезд 18
+					.row
+						.col-xs-12.col-sm-4.l-pt-30.l-pb-20
+							.copyright.f-sz-12.grey
+								| ©
+								script(type="text/javascript") document.write((new Date()).getFullYear())
+								|  Ninja Workshop. All right reserved.
 
 		.l-global-overlay(
 				ui-view="modal"
