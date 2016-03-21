@@ -9,7 +9,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="robots" content="noarchive">
     <title>NINJA`S WORKSHOP</title>
-  <link href="/app-dd0e1725856db9fcf00ad31fd7bddbcd.css" rel="stylesheet"></head>
+  <link href="/app-b52a8791357f02649ea59186926f3526.css" rel="stylesheet"></head>
   <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di>
     <div class="l">
       <div class="l-main">
@@ -22,9 +22,9 @@
                 </div>
                 <div class="phone l-midline white l-mb-20">
                   <div class="icon glyphicon glyphicon-earphone"></div>
-                  <div class="number f-sz-22 f-w-100">+7 (990) 123 23 45</div>
+                  <div class="number f-sz-22 f-w-100"><a href="tel:+79037212609">+7 (903) 721-26-09</a></div>
                 </div>
-                <button class="m-action">задать вопрос</button>
+                <button ng-click="ninja.showModal()" class="m-action">задать вопрос</button>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
               <div class="col-xs-12 col-sm-3 col-sm-offset-1 l-ptb-15">
                 <div class="contacts grey-3 row">
                   <div class="col-xs-6 col-sm-12 white heading">Телефон:</div>
-                  <div class="col-xs-6 col-sm-12">+7 (960) 123 23 45</div>
+                  <div class="col-xs-6 col-sm-12"><a href="tel:+79037212609">+7 (903) 721-26-09</a></div>
                   <div class="col-xs-6 col-sm-12 white heading">Адрес:</div>
                   <div class="col-xs-6 col-sm-12 address">Москва, м.Отрадное, <br> Сигнальный проезд 18</div>
                 </div>
@@ -104,8 +104,23 @@
             </div>
           </div>
         </div>
-        <div ui-view="modal" class="l-global-overlay"></div>
+        <div ui-view="modal" ng-click="ninja.closeModal($event)" class="l-global-overlay">
+          <div ng-click="$event.stopPropagation()" class="ui-modal">
+            <div ng-click="ninja.closeModal($event)" class="ui-modal-close glyphicon glyphicon-remove"></div>
+            <form id="contactForm" name="ninja.contactForm" ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)">
+              <div class="h3 red l-mb-30">Задать вопрос</div>
+              <input type="text" placeholder="Имя" name="name" ng-model="name">
+              <input type="text" placeholder="Телефон" name="phone" ng-model="phone">
+              <input type="email" placeholder="E-mail" name="email" ng-model="email" required>
+              <textarea placeholder="Какой у вас вопрос?" name="question" ng-model="question" required="required"></textarea>
+              <div>{{ninja.contactForm.$pending}}</div>
+              <div class="t-center">
+                <button type="submit" ng-disabled="ninja.contactForm.$invalid &amp;&amp; ninja.contactForm.$pristine" class="m-action"><span ng-if="ninja.contactForm.$submitted">вопрос отправлен!</span><span ng-if="!ninja.contactForm.$submitted">задать вопрос</span></button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  <script src="/vendor-3a73b3598d441d76fc60.js"></script><script src="/app-38ac7a0deb60ff5d5e73.js"></script></body>
+  <script src="/vendor-3a73b3598d441d76fc60.js"></script><script src="/app-86c4fda7dd85a05c136b.js"></script></body>
 </html>
