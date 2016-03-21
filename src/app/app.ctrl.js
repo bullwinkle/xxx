@@ -14,7 +14,7 @@ module.exports = function ($rootScope, $location, $state, $timeout, Mail) {
 	ninja.submitContactModal = (form) => {
 		console.warn('ninja.submitContactModal',form)
 		var mail = {
-			subject: "Заказ",
+			subject: `Вопрос${ form.name.$modelValue ? ` от ${form.name.$modelValue}` : '' }`,
 			content: {
 				email: form.email.$modelValue,
 				name: form.name.$modelValue,
