@@ -1,0 +1,45 @@
+md-card
+
+	div(ng-if="!vm.editMode")
+		
+		md-card-title()
+			.md-headline(ng-bind="vm.item.name")
+	
+		md-card-content
+			.md-subhead(ng-bind="vm.item.text")
+	
+	div(ng-if="vm.editMode")
+		
+		md-card-title
+			md-input-container
+				label Name
+				input.md-headline(ng-model="vm.editable.name")
+		
+		md-card-content
+			md-input-container
+				label Text
+				input.md-subhead(ng-model="vm.editable.text")
+
+	md-card-actions(
+		layout="row"
+		layout-align="end center"
+		)
+	
+		md-button(
+			ng-if="!vm.editMode"
+			ng-click="vm.edit()"
+			) Edit
+		md-button.md-warn(
+			id="delete-{{$index + 1}}"
+			ng-if="!vm.editMode"
+			ng-click="vm.remove()"
+			) Delete
+		
+		md-button(
+			ng-if="vm.editMode"
+			ng-click="vm.save()"
+			) Save
+		md-button.md-warn(
+			ng-if="vm.editMode"
+			ng-click="vm.exit()"
+			) Cancel

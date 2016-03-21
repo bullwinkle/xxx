@@ -1,0 +1,12 @@
+html(
+	ng-app="app"
+	ng-strict-di
+	)
+
+	head
+		title App
+		base(href="/")
+		meta(charset="utf8")
+		link(rel="icon" href=require('assets/logo.png'))
+
+	body(ui-view)

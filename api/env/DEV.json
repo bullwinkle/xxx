@@ -1,0 +1,11 @@
+{
+	"apps" : [{
+		"name": "starter-api-dev",
+		"watch": true,
+		"script": "api/index.js",
+		"env": {
+			"NODE_ENV": "development",
+			"PORT": 9100
+		}
+	}]
+}

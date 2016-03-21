@@ -1,0 +1,25 @@
+div(ng-bind-html="vm.html")
+
+div(layout="row" layout-padding)
+
+	div(flex layout="column")
+
+		md-input-container
+			label Name
+			input(
+			ng-model="vm.data.name"
+			)
+
+		md-input-container
+			label Text
+			input(
+			ng-model="vm.data.text"
+			)
+
+		md-button#create(
+			ng-click="vm.create()"
+			) Create	
+
+	div(flex layout="column")
+
+		item(ng-repeat="item in vm.items")

@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/iboozyvoozy/mamka.svg?branch=master)](https://travis-ci.org/iboozyvoozy/mamka) [![Dependency Status](https://david-dm.org/iboozyvoozy/mamka.svg)](https://david-dm.org/iboozyvoozy/mamka) [![devDependency Status](https://david-dm.org/iboozyvoozy/mamka/dev-status.svg)](https://david-dm.org/iboozyvoozy/mamka#info=devDependencies)
