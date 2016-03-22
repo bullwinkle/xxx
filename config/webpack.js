@@ -40,7 +40,9 @@ export default function ({dev, hot, test, port}) {
 			extensions: ['', '.js', '.json'],
 			modulesDirectories: ['node_modules', SRC],
 			alias: {
-				assets: SRC + '/assets'
+				assets: SRC + '/assets',
+				img: SRC + '/assets/img',
+				font: SRC + '/assets/font',
 			}
 		},
 		module: {
@@ -54,7 +56,8 @@ export default function ({dev, hot, test, port}) {
 			}, {
 				test: /\.styl$/,
 				include: SRC,
-				loader: ExtractPlugin.extract('css?sourceMap!stylus!postcss!stylus')
+				//loader: ExtractPlugin.extract('css?sourceMap!postcss!stylus!stlylint')
+				loader: ExtractPlugin.extract('css?sourceMap!postcss!stylus')
 			}, {
 				test: /\.html$/,
 				include: SRC,

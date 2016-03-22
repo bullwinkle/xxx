@@ -2,13 +2,13 @@ $duration = 0.2s
 $modalDelay = 0.1s
 
 .l-global-overlay
-	position: absolute;
+	position: fixed;
+	display: none
 	top: 0
 	left: 0
 	width: 100%
 	height: 100%
 	height 100vh
-	background-color: rgba(0, 0, 0, 0);
 	padding 130px 40px 40px
 	overflow-x hidden
 	overflow-y auto
@@ -16,27 +16,47 @@ $modalDelay = 0.1s
 	z-index 1001
 	cursor default
 	text-align: center
-	visibility: hidden
+	background-color: rgba(0, 0, 0, 0.5);
 	transition visibility 0s ease $duration + $modalDelay + 0.02s, background-color $duration ease-in-out $modalDelay
 	@media (max-width: $screen-xs-max)
-		padding 40px 20px 20px
+		padding 40px 10px 10px
 
 	&.is-visible
+		display: block
+
+	&.ng-enter
+		display: block
+		background-color: rgba(0, 0, 0, 0);
+		transition background-color $duration ease-in-out $modalDelay
+
+	&.ng-enter-active
+		display: block
 		background-color: rgba(0, 0, 0, 0.5);
-		visibility: visible
-		transition visibility 0s ease 0s, background-color .2s ease-in-out
+		transition background-color .2s ease-in-out
+
+	&.ng-leave
+		display: block
+		background-color: rgba(0, 0, 0, 0.5);
+		transition background-color .2s ease-in-out
+
+	&.ng-leave-active
+		display: block
+		background-color: rgba(0, 0, 0, 0);
+		transition background-color $duration ease-in-out $modalDelay
 
 	.ui-modal
 		position: relative;
 		padding: 60px 20px 40px;
+		@media (max-width: $screen-xs-max)
+			padding: 50px 15px 15px;
 		max-width 600px
 		display: inline-block
 		background: white
 		transform-origin 50% 50%
-		transform scale(1.1, 1.1)
-		opacity 0
 		cursor default
-		transition opacity $duration ease-in-out 0s, transform $duration ease-in-out 0s
+		opacity 1
+		transform scale(1, 1)
+		transition opacity .2s ease-in-out $modalDelay, transform $duration ease-in-out $modalDelay
 		&-close
 			position: absolute;
 			top: 0px
@@ -48,7 +68,28 @@ $modalDelay = 0.1s
 			&:hover
 				color: $red
 
-	&.is-visible .ui-modal
+	//&.is-visible .ui-modal
+	//	opacity 1
+	//	transform scale(1, 1)
+	//	transition opacity .2s ease-in-out $modalDelay, transform $duration ease-in-out $modalDelay
+
+
+	&.ng-enter .ui-modal
+		opacity 0
+		transform scale(1.12, 1.12)
+		transition opacity $duration ease-in-out 0s, transform $duration ease-in-out 0s
+
+	&.ng-enter-active .ui-modal
 		opacity 1
 		transform scale(1, 1)
 		transition opacity .2s ease-in-out $modalDelay, transform $duration ease-in-out $modalDelay
+
+	&.ng-leave .ui-modal
+		opacity 1
+		transform scale(1, 1)
+		transition opacity .2s ease-in-out $modalDelay, transform $duration ease-in-out $modalDelay
+
+	&.ng-leave-active .ui-modal
+		opacity 0
+		transform scale(1.12, 1.12)
+		transition opacity $duration ease-in-out 0s, transform $duration ease-in-out 0s

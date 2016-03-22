@@ -30,23 +30,20 @@ module.exports = function ($rootScope, $location, $state, $timeout, Mail) {
 				console.warn(err)
 			})
 	}
-	ninja.showModal = () => {
-		$ovrl || ($ovrl=$('.l-global-overlay'))
-		$ovrl
-			.addClass('is-visible')
-			.css({
-				top: document.body.scrollTop
-			})
-		$body.addClass('no-scroll')
-	}
-	ninja.closeModal = (e) => {
-		e.stopPropagation()
-		$ovrl || ($ovrl=$('.l-global-overlay'))
-		$ovrl
-			.removeClass('is-visible')
-		t = Math.max.apply(Math,$ovrl.css('transition-duration').split(',').map( (el,i)=>parseFloat(el) ))
-		$body.removeClass('no-scroll')
-	}
+	//ninja.showModal = () => {
+	//	$ovrl || ($ovrl=$('.l-global-overlay'))
+	//	$ovrl
+	//		.addClass('is-visible')
+	//	$body.addClass('no-scroll')
+	//}
+	//ninja.closeModal = (e) => {
+	//	e.stopPropagation()
+	//	$ovrl || ($ovrl=$('.l-global-overlay'))
+	//	$ovrl
+	//		.removeClass('is-visible')
+	//	t = Math.max.apply(Math,$ovrl.css('transition-duration').split(',').map( (el,i)=>parseFloat(el) ))
+	//	$body.removeClass('no-scroll')
+	//}
 	ninja.resetContactForm = () => {
 		console.warn('resetContactForm',ninja.contactForm);
 		ninja.contactForm.question.$setViewValue('');

@@ -18,7 +18,8 @@ import karmaSetup from './karma';
 // Main constants
 const SPA = true;
 const DEV = process.env.NODE_ENV !== 'production';
-const BUILD_PROXY = process.env.BUILD_PROXY || 'http://mamka.localhost';
+//const BUILD_PROXY = process.env.BUILD_PROXY || 'http://mamka.localhost';
+const BUILD_PROXY = '';
 const BUILD_PORT = process.env.BUILD_PORT || 9001;
 const KARMA_PORT = process.env.KARMA_PORT || 9002;
 const WD_HUB_URL = process.env.WD_HUB_URL || 'http://localhost:4444/wd/hub';

@@ -16,7 +16,7 @@ html
 
 		title NINJA`S WORKSHOP
 
-	body(ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di)
+	body(ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di ng-class="{'no-scroll':ninja.modal.visible}")
 		.l: .l-main
 			.l-header
 				.container-fluid.l-container(ui-view="header")
@@ -27,15 +27,15 @@ html
 								.icon.glyphicon.glyphicon-earphone
 								.number.f-sz-22.f-w-100
 									a(href="tel:+79037212609") +7 (903) 721-26-09
-							button.m-action(ng-click="ninja.showModal()") задать вопрос
+							button.m-action(ng-click="ninja.modal.visible = true") задать вопрос
 
 			.l-main-navigation
 				.l-container
 					ul.l-main-navigation-items.l-flex.overflow-x-hidden
 						li.l-main-navigation-item(
-							ng-repeat="nav in ninja.mainMenu"
-							ui-link-active="::nav.url"
-							ng-class="{'active': isActive(nav.url)}"
+						ng-repeat="nav in ninja.mainMenu"
+						ui-link-active="::nav.url"
+						ng-class="{'active': isActive(nav.url)}"
 						)
 							a(ng-href="{{ ::nav.url }}" ng-bind="::nav.title")
 
@@ -49,8 +49,8 @@ html
 							abstract-proxy-property="data.proxyName"
 						)
 						form.global-search-form(
-							name="globalSearch"
-							ng-submit="ninja.submitGlobalSearch(ninja.globalSearchQuery)"
+							name="ninja.globalSearchForm"
+							ng-submit="s && ninja.submitGlobalSearch(s)"
 						)
 							.global-search-input
 								input.l-w-100(
@@ -58,16 +58,17 @@ html
 									results="5"
 									name="s"
 									placeholder="Поиск"
-									ng-model="ninja.globalSearchQuery"
+									ng-model="s"
+									ng-model-options="{updateOn:'input paste change'}"
 									ng-required="true"
 									ng-trim="true"
 								)
 								span.glyphicon.glyphicon-search.grey-2.l-w20.l-h20
-							input.hide(
-							type="submit"
-							ng-disabled="!ninja.globalSearchQuery"
-							value="Поиск"
-							)
+							//input.hide(
+							//	type="submit"
+							//	ng-disabled="ninja.globalSearchForm.$invalid"
+							//	value="Поиск"
+							//)
 
 				//- ========== CONTENT UI-VIEW ==========
 				div(ui-view="content")
@@ -102,9 +103,9 @@ html
 						.col-xs-12.col-sm-4.l-ptb-15
 							ul.row.menu
 								li.l-plr-20.col-xs-6(
-									ng-repeat="nav in ninja.mainMenu"
-									ui-link-active="::nav.url"
-									ng-class="{'active': isActive(nav.url)}"
+								ng-repeat="nav in ninja.mainMenu"
+								ui-link-active="::nav.url"
+								ng-class="{'active': isActive(nav.url)}"
 								)
 									a(href="{{ ::nav.url }}" ng-bind="::nav.title")
 
@@ -123,51 +124,54 @@ html
 								|  Ninja Workshop. All right reserved.
 
 		.l-global-overlay(
-				ui-view="modal"
-				ng-click="ninja.closeModal($event)"
-			)
+		ui-view="modal"
+		ng-class="{'is-visible':ninja.modal.visible}"	
+		ng-if="ninja.modal.visible"
+			
+		ng-click="ninja.modal.visible = false"
+		)
 			.ui-modal(
-				ng-click="$event.stopPropagation()"
+			ng-click="$event.stopPropagation()"
 			)
 				.ui-modal-close.glyphicon.glyphicon-remove(
-					ng-click="ninja.closeModal($event)"
+				ng-click="ninja.modal.visible = false"
 				)
 				form(
-					id="contactForm"
-					name="ninja.contactForm"
-					ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)"
+				id="contactForm"
+				name="ninja.contactForm"
+				ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)"
 				)
-					.h3.red.l-mb-30 Задать вопрос
+					.h3.red.l-mb-30 Задайте нам вопрос
 					input(
-						type="text"
-						placeholder="Имя"
-						name="name"
-						ng-model="name"
+					type="text"
+					placeholder="Имя"
+					name="name"
+					ng-model="name"
 					)
 					input(
-						type="text"
-						placeholder="Телефон"
-						name="phone"
-						ng-model="phone"
+					type="text"
+					placeholder="Телефон"
+					name="phone"
+					ng-model="phone"
 					)
 					input(
-						type="email"
-						placeholder="E-mail"
-						name="email"
-						ng-model="email"
-						required
+					type="email"
+					placeholder="E-mail"
+					name="email"
+					ng-model="email"
+					required
 					)
 					textarea(
-						placeholder="Какой у вас вопрос?"
-						name="question"
-						ng-model="question"
-						required="required"
+					placeholder="Какой у вас вопрос?"
+					name="question"
+					ng-model="question"
+					required="required"
 					)
 					div {{ninja.contactForm.$pending}}
 					.t-center
 						button.m-action(
-							type="submit"
-							ng-disabled="ninja.contactForm.$invalid && ninja.contactForm.$pristine"
-							)
+						type="submit"
+						ng-disabled="ninja.contactForm.$invalid || ninja.contactForm.$pristine"
+						)
 							span(ng-if="ninja.contactForm.$submitted") вопрос отправлен!
 							span(ng-if="!ninja.contactForm.$submitted") задать вопрос

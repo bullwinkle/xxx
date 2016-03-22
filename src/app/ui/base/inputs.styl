@@ -6,24 +6,34 @@ input()
 	border 1px solid $grey1
 	max-width: 100%
 	width: 100%
-	transition box-shadow .2s ease-in-out
+	transition background .2s ease-in-out
+	outline: none
+	box-shadow inset 0 0 0 0 black
+	background-color white
+	background-image none
 	&:focus
 		box-shadow $hoverBoxShadow
 
 	form &
 		margin-bottom: 20px;
 
+	&[required]:not(.ng-valid)
+		background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+	&.ng-dirty.ng-invalid
+		background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+	&.ng-dirty.ng-valid
+		background-image: linear-gradient(to top, lighten($success, 20%) 0px, lighten($success, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+
+	&:-webkit-autofill
+		-webkit-box-shadow: inset 0 0 0 0 red !important; // background
+		background-color: red !important; // background
+		-webkit-text-fill-color: $grey !important; // color
+		color $grey !important; // color
 
 input
 textarea
 select
 	input()
-	&[required]:not(.ng-valid)
-		box-shadow 0 -10px 10px -10px $error inset
-	&.ng-dirty.ng-invalid
-		box-shadow 0 -10px 10px -10px $error inset
-	&.ng-dirty.ng-valid
-		box-shadow 0 -10px 8px -10px $success inset
 
 textarea
 	resize vertical

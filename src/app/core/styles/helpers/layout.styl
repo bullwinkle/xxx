@@ -128,6 +128,7 @@ for val in 10 15 20 25 30 40 50
 		vertical-align middle
 		display table-cell
 
+
 .l-tline-full
 	width 100%
 	display table
@@ -137,15 +138,14 @@ for val in 10 15 20 25 30 40 50
 
 .l-flex {
 	border-radius: 5px;
-	display: flex;
-	box-flex: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+	display: flex;
 }
 
-for flex in 1 2 3 4 5
-	.l-flex-{flex}
-		flex flex
+for __flex in 1 2 3 4 5
+	.l-flex-{__flex}
+		flex __flex
 
 .l-flex-inline
 	display: inline-flex
