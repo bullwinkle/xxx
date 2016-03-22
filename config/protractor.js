@@ -1,24 +1,27 @@
-export default function ({port}) {
+export default function ({url, base}) {
 
 	let cfg = {
-		debug: true,
-		seleniumAddress: 'http://localhost:4444/wd/hub',
+		debug: false,
+		seleniumAddress: url,
 		specs: [
-			process.cwd() + '/test/e2e/*.js',
-			process.cwd() + '/src/app/*.e2e.js'
+			process.cwd() + '/test/e2e/index.js',
+			process.cwd() + '/test/e2e/**/*.js',
+			process.cwd() + '/src/**/*.e2e.js'
 		],
 		framework: 'jasmine'
 	};
 
-	cfg.baseUrl = `http://localhost:${port}`;
+	cfg.baseUrl = base;
+	cfg.maxSessions = 1;
 
-	cfg.jasmineNodeOpts = {
-		defaultTimeoutInterval: 20000,
-		showTiming: true,
-		isVerbose: true,
-		showColors: true
-	};
+	cfg.multiCapabilities = [{
+		browserName: 'firefox',
+		shardTestFiles: true
+	}, {
+		browserName: 'chrome',
+		shardTestFiles: true
+	}];
 
 	return cfg;
 
-};
+}

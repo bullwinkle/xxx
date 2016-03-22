@@ -9,8 +9,8 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="robots" content="noarchive">
     <title>NINJA`S WORKSHOP</title>
-  <link href="/app-fd56abac660f1423adbe9d434d0120cb.css" rel="stylesheet"></head>
-  <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di>
+  <link href="/app.css" rel="stylesheet"></head>
+  <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di ng-class="{'no-scroll':ninja.modal.visible}">
     <div class="l">
       <div class="l-main">
         <div class="l-header">
@@ -24,7 +24,7 @@
                   <div class="icon glyphicon glyphicon-earphone"></div>
                   <div class="number f-sz-22 f-w-100"><a href="tel:+79037212609">+7 (903) 721-26-09</a></div>
                 </div>
-                <button ng-click="ninja.showModal()" class="m-action">задать вопрос</button>
+                <button ng-click="ninja.modal.visible = true" class="m-action">задать вопрос</button>
               </div>
             </div>
           </div>
@@ -40,11 +40,15 @@
           <div class="container-fluid l-container l-ptb-30">
             <div class="l-flex l-plr-10">
               <div ui-breadcrumbs displayname-property="data.displayName" display-pathname-property="data.displayPathname" abstract-proxy-property="data.proxyName" class="l-flex-1"></div>
-              <form name="globalSearch" ng-submit="ninja.submitGlobalSearch(ninja.globalSearchQuery)" class="global-search-form">
+              <form name="ninja.globalSearchForm" ng-submit="s &amp;&amp; ninja.submitGlobalSearch(s)" class="global-search-form">
                 <div class="global-search-input">
-                  <input type="search" results="5" name="s" placeholder="Поиск" ng-model="ninja.globalSearchQuery" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
+                  <input type="search" results="5" name="s" placeholder="Поиск" ng-model="s" ng-model-options="{updateOn:'input paste change'}" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
                 </div>
-                <input type="submit" ng-disabled="!ninja.globalSearchQuery" value="Поиск" class="hide">
+                <!--input.hide(-->
+                <!--	type="submit"-->
+                <!--	ng-disabled="ninja.globalSearchForm.$invalid"-->
+                <!--	value="Поиск"-->
+                <!--)-->
               </form>
             </div>
           </div>
@@ -106,21 +110,21 @@
         </div>
       </div>
     </div>
-    <div ui-view="modal" ng-click="ninja.closeModal($event)" class="l-global-overlay">
+    <div ui-view="modal" ng-class="{'is-visible':ninja.modal.visible}" ng-if="ninja.modal.visible" ng-click="ninja.modal.visible = false" class="l-global-overlay">
       <div ng-click="$event.stopPropagation()" class="ui-modal">
-        <div ng-click="ninja.closeModal($event)" class="ui-modal-close glyphicon glyphicon-remove"></div>
+        <div ng-click="ninja.modal.visible = false" class="ui-modal-close glyphicon glyphicon-remove"></div>
         <form id="contactForm" name="ninja.contactForm" ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)">
-          <div class="h3 red l-mb-30">Задать вопрос</div>
+          <div class="h3 red l-mb-30">Задайте нам вопрос</div>
           <input type="text" placeholder="Имя" name="name" ng-model="name">
           <input type="text" placeholder="Телефон" name="phone" ng-model="phone">
           <input type="email" placeholder="E-mail" name="email" ng-model="email" required>
           <textarea placeholder="Какой у вас вопрос?" name="question" ng-model="question" required="required"></textarea>
           <div>{{ninja.contactForm.$pending}}</div>
           <div class="t-center">
-            <button type="submit" ng-disabled="ninja.contactForm.$invalid &amp;&amp; ninja.contactForm.$pristine" class="m-action"><span ng-if="ninja.contactForm.$submitted">вопрос отправлен!</span><span ng-if="!ninja.contactForm.$submitted">задать вопрос</span></button>
+            <button type="submit" ng-disabled="ninja.contactForm.$invalid || ninja.contactForm.$pristine" class="m-action"><span ng-if="ninja.contactForm.$submitted">вопрос отправлен!</span><span ng-if="!ninja.contactForm.$submitted">задать вопрос</span></button>
           </div>
         </form>
       </div>
     </div>
-  <script src="/vendor-bcea2343c98c30c08ccc.js"></script><script src="/app-afee30caaa6e8d649230.js"></script></body>
+  <script src="/vendor.js"></script><script src="/app.js"></script></body>
 </html>

@@ -1,31 +1,38 @@
 import wpSetup from './webpack';
 
-const defaults = wpSetup({
-	dev: true,
-	test: true
-});
+export default function ({dev, port, real}) {
 
-const wpConfig = Object.assign(defaults, {
-	entry: {},
-	output: {}
-});
+	const defaults = wpSetup({
+		dev: true,
+		test: true
+	});
 
-export default function ({dev, real}) {
+	const wpConfig = Object.assign(defaults, {
+		entry: {},
+		output: {}
+	});
 
 	let cfg = {
+		port,
 		autoWatch: dev,
 		singleRun: !dev,
 		frameworks: ['chai', 'jasmine'],
 		reporters: ['mocha'],
 		browsers: ['PhantomJS'],
 		files: [
-			'./test/unit/index.js',
-			'./test/unit/**/*.js',
-			'./src/**/*.spec.js'
+			// Compiled vendors from webpack config
+			'dist/vendor*.{js,css}',
+			'dist/app*.{js,css}',
+			// Required for testing
+			'node_modules/angular-mocks/angular-mocks.js',
+			// Test files
+			'test/unit/index.js',
+			'test/unit/**/*.js',
+			'src/**/*.{unit,spec}.js'
 		],
 		preprocessors: {
-			'./src/**/*.js': ['webpack', 'sourcemap'],
-			'./test/**/*.js': ['webpack', 'sourcemap']
+			'src/**/*': ['webpack', 'sourcemap'],
+			'test/**/*': ['webpack', 'sourcemap']
 		},
 		plugins: [
 			'karma-chai',

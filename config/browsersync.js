@@ -1,19 +1,20 @@
-import gzip from 'compression';
-
-export default function ({dev, port}) {
+export default function ({dev, port, proxy}) {
 
 	const baseDir = 'dist';
 
 	let cfg = {
-		server: {baseDir},
-		files: dev ? `${baseDir}/**/*.*` : null,
-		port: port,
+		port,
+		proxy,
 		open: false,
 		notify: false
 	};
 
-	if (!dev) {
-		cfg.middleware = [gzip()];
+	if (dev) {
+		cfg.files = `${baseDir}/**/*.*`;
+	}
+
+	if (!proxy) {
+		cfg.server = {baseDir};
 	}
 
 	return cfg;

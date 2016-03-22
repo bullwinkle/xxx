@@ -1,17 +1,7 @@
-import 'vendor/vendor';
-import 'angular-mocks';
-import 'app/app';
+describe('Smoke unit test', () => {
 
-// Hack for loading all tests async for karma
+	it('must have angular',  () => {
+		expect(angular).to.be.an('object');
+	});
 
-//describe('demo test', function () {
-//	it('must be ok', function () {
-//		expect(123).to.be.a('number');
-//	});
-//});
-
-//describe('demo test', () => {
-//	it('must be ok', () => {
-//		expect(123).to.be.a('number');
-//	});
-//});
+});
