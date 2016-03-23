@@ -20,8 +20,8 @@ module.exports = function ($rootScope, $location, $state, $timeout, Mail) {
 				name: form.name.$modelValue,
 				phone: form.phone.$modelValue,
 				question: form.question.$modelValue,
-				templateType: 'contact'
-			}
+			},
+			templateType: 'contact'
 		}
 		Mail.save(mail).$promise
 			.then((res) => {
