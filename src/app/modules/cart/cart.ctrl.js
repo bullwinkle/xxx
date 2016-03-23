@@ -42,8 +42,9 @@ module.exports = function ($timeout, cart, Mail) {
 	vm.placeOrder = (form, e) => {
 		e.preventDefault()
 		var mail = {
-			subject: "Заказ",
-			content: vm.order
+			subject: `Заказ${vm.order.name? `на имя: ${vm.order.name}`: ''}`,
+			content: vm.order,
+			templateType: 'order'
 		}
 		Mail.save(mail).$promise
 			.then((res) => {
