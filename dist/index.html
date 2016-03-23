@@ -1,93 +1,132 @@
-<head><link href="/app-f1426e82de3f92af3bf210168d88a38c.css" rel="stylesheet"></head>Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Module not found: Error: Cannot resolve 'file' or 'directory' /manifest.json i  n /Users/macbookpro/Projects/ninja_workshop/xxx/src/pages:
-  Error: Cannot resolve 'file' or 'directory' /manifest.json in /Users/macbookpr  o/Projects/ninja_workshop/xxx/src/pages
-  Module not found: Error: Cannot resolve 'file' or 'directory' /ms-icon-144x144  .png in /Users/macbookpro/Projects/ninja_workshop/xxx/src/pages:
-  Error: Cannot resolve 'file' or 'directory' /ms-icon-144x144.png in /Users/mac  bookpro/Projects/ninja_workshop/xxx/src/pages
-  
-  - compiler.js:78 
-    [xxx]/[html-webpack-plugin]/lib/compiler.js:78:16
-  
-  - Compiler.js:214 Compiler.<anonymous>
-    [xxx]/[webpack]/lib/Compiler.js:214:10
-  
-  - Compiler.js:403 
-    [xxx]/[webpack]/lib/Compiler.js:403:12
-  
-  - Tapable.js:60 Compiler.applyPluginsAsync
-    [xxx]/[tapable]/lib/Tapable.js:60:69
-  
-  - Compiler.js:400 Compiler.<anonymous>
-    [xxx]/[webpack]/lib/Compiler.js:400:9
-  
-  - Compilation.js:577 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/Compilation.js:577:13
-  
-  - Tapable.js:60 Compilation.applyPluginsAsync
-    [xxx]/[tapable]/lib/Tapable.js:60:69
-  
-  - Compilation.js:572 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/Compilation.js:572:10
-  
-  - Tapable.js:67 Compilation.next
-    [xxx]/[tapable]/lib/Tapable.js:67:11
-  
-  - UglifyJsPlugin.js:140 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/optimize/UglifyJsPlugin.js:140:4
-  
-  - Tapable.js:71 Compilation.applyPluginsAsync
-    [xxx]/[tapable]/lib/Tapable.js:71:13
-  
-  - Compilation.js:567 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/Compilation.js:567:9
-  
-  - Tapable.js:60 Compilation.applyPluginsAsync
-    [xxx]/[tapable]/lib/Tapable.js:60:69
-  
-  - Compilation.js:563 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/Compilation.js:563:8
-  
-  - Tapable.js:60 Compilation.applyPluginsAsync
-    [xxx]/[tapable]/lib/Tapable.js:60:69
-  
-  - Compilation.js:525 Compilation.seal
-    [xxx]/[webpack]/lib/Compilation.js:525:7
-  
-  - Compiler.js:397 Compiler.<anonymous>
-    [xxx]/[webpack]/lib/Compiler.js:397:15
-  
-  - Tapable.js:103 
-    [xxx]/[tapable]/lib/Tapable.js:103:11
-  
-  - Compilation.js:445 Compilation.<anonymous>
-    [xxx]/[webpack]/lib/Compilation.js:445:10
-  
-  - Compilation.js:417 
-    [xxx]/[webpack]/lib/Compilation.js:417:12
-  
-  - Compilation.js:332 
-    [xxx]/[webpack]/lib/Compilation.js:332:10
-  
-  - async.js:52 
-    [xxx]/[async]/lib/async.js:52:16
-  
-  - async.js:246 done
-    [xxx]/[async]/lib/async.js:246:17
-  
-  - async.js:44 
-    [xxx]/[async]/lib/async.js:44:16
-  
-  - Compilation.js:332 
-    [xxx]/[webpack]/lib/Compilation.js:332:10
-  
-  - async.js:52 
-    [xxx]/[async]/lib/async.js:52:16
-  
-  - async.js:246 done
-    [xxx]/[async]/lib/async.js:246:17
-  
-  - async.js:44 
-    [xxx]/[async]/lib/async.js:44:16
-  
-</pre><script src="/vendor-bcea2343c98c30c08ccc.js"></script><script src="/app-f0323ec066de6b15313d.js"></script>
+
+<!-- NINJA!-->
+<html>
+  <head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noarchive">
+    <title>NINJA`S WORKSHOP</title>
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128-9c68629047fed40a8ac2c8c6727e01fa.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256-eee36b79eafb351007ca598a2a9923a8.png">
+  <link href="/app-cc4f77dc00939bb59888fea970511923.css" rel="stylesheet"></head>
+  <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di ng-class="{'no-scroll':ninja.modal.visible}">
+    <div class="l">
+      <div class="l-main">
+        <div class="l-header">
+          <div ui-view="header" class="container-fluid l-container">
+            <div class="row">
+              <div class="nw-info col-sm-4 col-sm-offset-8">
+                <div class="nw-logo"><a href="/"><img src="/logo-white-4d0a529cb19c5732f8c460eb1f360b5e.svg" class="nw-logo-main"></a>
+                  <div class="nw-logo-description">ремонт мототехники</div>
+                </div>
+                <div class="phone l-midline white l-mb-20">
+                  <div class="icon glyphicon glyphicon-earphone"></div>
+                  <div class="number f-sz-22 f-w-100"><a href="tel:+79037212609">+7 (903) 721-26-09</a></div>
+                </div>
+                <button ng-click="ninja.modal.visible = true" class="m-action">задать вопрос</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="l-main-navigation">
+          <div class="l-container">
+            <ul class="l-main-navigation-items l-flex overflow-x-hidden">
+              <li ng-repeat="nav in ninja.mainMenu" ui-link-active="::nav.url" ng-class="{'active': isActive(nav.url)}" class="l-main-navigation-item"><a ng-href="{{ ::nav.url }}" ng-bind="::nav.title"></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="l-content">
+          <div class="container-fluid l-container l-ptb-30">
+            <div class="l-flex">
+              <div ui-breadcrumbs displayname-property="data.displayName" display-pathname-property="data.displayPathname" abstract-proxy-property="data.proxyName" class="l-flex-1"></div>
+              <form name="ninja.globalSearchForm" ng-submit="s &amp;&amp; ninja.submitGlobalSearch(s)" class="global-search-form">
+                <div class="global-search-input">
+                  <input type="search" results="5" name="s" placeholder="Поиск" ng-model="s" ng-model-options="{updateOn:'input paste change'}" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
+                </div>
+                <!--input.hide(-->
+                <!--	type="submit"-->
+                <!--	ng-disabled="ninja.globalSearchForm.$invalid"-->
+                <!--	value="Поиск"-->
+                <!--)-->
+              </form>
+            </div>
+          </div>
+          <div ui-view="content">
+            <div class="container-fluid l-container">
+              <div class="text-center h2">Загрузка...</div>
+            </div>
+          </div>
+        </div>
+        <!--.ui-carousel-->
+        <!--	.container-fluid.l-container.viewport-->
+        <!--		.row-->
+        <!--			.col-xs-12-->
+        <!--				slick.items(-->
+        <!--					infinite="true"-->
+        <!--					slides-to-show="8"-->
+        <!--					slides-to-scroll="8"-->
+        <!--					speed="300"-->
+        <!--					swipetoslide="true"-->
+        <!--					respondto="min"-->
+        <!--					autoplay="true"-->
+        <!--					autoplayspeed="2000"-->
+        <!--				)-->
+        <!--					- var iconsQ = new Array(20)-->
+        <!--					each val, i in iconsQ-->
+        <!--						.item: a(href="#") item #{i}-->
+        <div ui-view="footer" class="l-footer">
+          <div class="container-fluid l-container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 logo-wrapper">
+                <div class="grey">
+                  <div class="nw-logo"><a href="/"><img src="/logo-white-4d0a529cb19c5732f8c460eb1f360b5e.svg" class="nw-logo-main"></a>
+                    <div class="nw-logo-description">ремонт мототехники</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 l-ptb-15">
+                <ul class="row menu">
+                  <li ng-repeat="nav in ninja.mainMenu" ui-link-active="::nav.url" ng-class="{'active': isActive(nav.url)}" class="l-plr-20 col-xs-6"><a href="{{ ::nav.url }}" ng-bind="::nav.title"></a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-3 col-sm-offset-1 l-ptb-15">
+                <div class="contacts grey-3 row">
+                  <div class="col-xs-6 col-sm-12 white heading">Телефон:</div>
+                  <div class="col-xs-6 col-sm-12"><a href="tel:+79037212609">+7 (903) 721-26-09</a></div>
+                  <div class="col-xs-6 col-sm-12 white heading">Адрес:</div>
+                  <div class="col-xs-6 col-sm-12 address">Москва, м.Отрадное, <br> Сигнальный проезд 18</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 l-pt-30 l-pb-20">
+                <div class="copyright f-sz-12 grey">©
+                  <script type="text/javascript">document.write((new Date()).getFullYear())</script> Ninja Workshop. All right reserved.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ui-view="modal" ng-class="{'is-visible':ninja.modal.visible}" ng-if="ninja.modal.visible" ng-click="ninja.modal.visible = false" class="l-global-overlay">
+      <div ng-click="$event.stopPropagation()" class="ui-modal">
+        <div ng-click="ninja.modal.visible = false" class="ui-modal-close glyphicon glyphicon-remove"></div>
+        <form id="contactForm" name="ninja.contactForm" ng-submit="$event.preventDefault();ninja.submitContactModal(ninja.contactForm)">
+          <div class="h3 red l-mb-30">Задайте нам вопрос</div>
+          <input type="text" placeholder="Имя" name="name" ng-model="name">
+          <input type="text" placeholder="Телефон" name="phone" ng-model="phone">
+          <input type="email" placeholder="E-mail" name="email" ng-model="email" required>
+          <textarea placeholder="Какой у вас вопрос?" name="question" ng-model="question" required="required"></textarea>
+          <div>{{ninja.contactForm.$pending}}</div>
+          <div class="t-center">
+            <button type="submit" ng-disabled="ninja.contactForm.$invalid || ninja.contactForm.$pristine" class="m-action"><span ng-if="ninja.contactForm.$submitted">вопрос отправлен!</span><span ng-if="!ninja.contactForm.$submitted">задать вопрос</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  <script src="/vendor-bcea2343c98c30c08ccc.js"></script><script src="/app-326ffb4a7206779640d5.js"></script></body>
+</html>
