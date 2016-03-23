@@ -2,7 +2,7 @@ import _ from 'lodash';
 import del from 'del';
 import webpack from 'webpack';
 import HotServer from 'webpack-dev-server';
-import protractor from 'protractor/built/launcher';
+import protractor from 'protractor/lib/launcher';
 import browsersync from 'browser-sync';
 import spa from 'browser-sync-spa';
 import {log} from 'gulp-util';
