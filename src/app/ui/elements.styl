@@ -41,11 +41,12 @@
 		&[type="search"]::-webkit-search-results-decoration
 			display: none
 
-		&[required]:not(.ng-valid)
-			background-image: none;
+
 		&:not(:focus)
 			box-shadow 0 0 0 0 $error inset
 			padding-right: 34px
+			background-image: none !important;
+
 			@media (min-width $screen-sm-max)
 				opacity 0
 				width: 46px

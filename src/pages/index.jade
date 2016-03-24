@@ -40,35 +40,34 @@ html
 							a(ng-href="{{ ::nav.url }}" ng-bind="::nav.title")
 
 			.l-content
-				.container-fluid.l-container.l-ptb-30
-					.l-flex
-						.l-flex-1(
-							ui-breadcrumbs
-							displayname-property="data.displayName"
-							display-pathname-property="data.displayPathname"
-							abstract-proxy-property="data.proxyName"
-						)
-						form.global-search-form(
-							name="ninja.globalSearchForm"
-							ng-submit="s && ninja.submitGlobalSearch(s)"
-						)
-							.global-search-input
-								input.l-w-100(
-									type="search"
-									results="5"
-									name="s"
-									placeholder="Поиск"
-									ng-model="s"
-									ng-model-options="{updateOn:'input paste change'}"
-									ng-required="true"
-									ng-trim="true"
-								)
-								span.glyphicon.glyphicon-search.grey-2.l-w20.l-h20
-							//input.hide(
-							//	type="submit"
-							//	ng-disabled="ninja.globalSearchForm.$invalid"
-							//	value="Поиск"
-							//)
+				.l-container.container-fluid.l-flex-desctop.l-ptb-30
+					.l-flex-desctop-1(
+						ui-breadcrumbs
+						displayname-property="data.displayName"
+						display-pathname-property="data.displayPathname"
+						abstract-proxy-property="data.proxyName"
+					)
+					form.l-flex-0.global-search-form(
+						name="ninja.globalSearchForm"
+						ng-submit="s && ninja.submitGlobalSearch(s)"
+					)
+						.global-search-input
+							input.l-w-100(
+								type="search"
+								results="5"
+								name="s"
+								placeholder="Поиск"
+								ng-model="s"
+								ng-model-options="{updateOn:'input paste change'}"
+								ng-required="true"
+								ng-trim="true"
+							)
+							span.glyphicon.glyphicon-search.grey-2.l-w20.l-h20
+						//input.hide(
+						//	type="submit"
+						//	ng-disabled="ninja.globalSearchForm.$invalid"
+						//	value="Поиск"
+						//)
 
 				//- ========== CONTENT UI-VIEW ==========
 				div(ui-view="content")

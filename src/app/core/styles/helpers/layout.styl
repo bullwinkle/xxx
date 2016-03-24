@@ -136,16 +136,25 @@ for val in 10 15 20 25 30 40 50
 		vertical-align middle
 		display table-cell
 
-.l-flex {
-	border-radius: 5px;
-	flex-flow: row wrap;
-	justify-content: center;
-	display: flex;
-}
+.l-flex
+	border-radius: 5px
+	flex-flow: row wrap
+	justify-content: center
+	display: flex
+
+.l-flex-desctop
+	@media (min-width $screen-sm-max)
+		border-radius: 5px
+		flex-flow: row wrap
+		justify-content: center
+		display: flex
 
 for __flex in 1 2 3 4 5
 	.l-flex-{__flex}
 		flex __flex
+	.l-flex-desctop-{__flex}
+		@media (min-width $screen-sm-max)
+			flex __flex
 
 .l-flex-inline
 	display: inline-flex

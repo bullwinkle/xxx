@@ -17,18 +17,20 @@ input()
 	form &
 		margin-bottom: 20px;
 
-	&[required]:not(.ng-valid)
-		background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
-	&.ng-dirty.ng-invalid
-		background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
-	&.ng-dirty.ng-valid
-		background-image: linear-gradient(to top, lighten($success, 20%) 0px, lighten($success, 20%) 2px,rgba(255,255,255,0) 3px) !important;
-
 	&:-webkit-autofill
 		-webkit-box-shadow: inset 0 0 0 0 red !important; // background
 		background-color: red !important; // background
 		-webkit-text-fill-color: $grey !important; // color
 		color $grey !important; // color
+
+	.ng-dirty &
+		//&[required]:not(.ng-valid)
+		//	background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+		&.ng-invalid
+			background-image: linear-gradient(to top, lighten($error, 20%) 0px, lighten($error, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+		&.ng-valid
+			background-image: linear-gradient(to top, lighten($success, 20%) 0px, lighten($success, 20%) 2px,rgba(255,255,255,0) 3px) !important;
+
 
 input
 textarea

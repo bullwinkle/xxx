@@ -1,25 +1,29 @@
-section.container-fluid.l-container
-	h1.t-center Доступные категории
+.container-fluid.l-container
+	.row
+		.col-xs-12
+			h1.t-center Доступные категории
 	ul.row
 		//+article-preview-v
-		li.col-xs-12.col-sm-6.col-md-4.l-mb-20.l-pb-10.black.article.m-preview(
+		li.col-xs-12.col-sm-6.col-md-4.l-mb-20.l-pb-10.black(
 			ng-repeat="category in vm.categories"
 		)
-			a.l-plr-15(href="{{category.link}}" ng-init="thumb=vm.getThumbnailUrl(category.acf.featured_image.sizes.thumbnail)")
-				//.row
-				//	.thumbnail-cover
-				//		.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
-				.row
-					.info.l-p-20
-						.title.h4.red(ng-bind-html="::category.name")
-						.description.f-lh-26.black(ng-bind-html="::category.description")
-						div.black
-							span(ng-bind="::category.count")
-							| &nbsp;
-							span: ng-pluralize(
-								count="category.count"
-								when="{'one': 'запись','few':'записи','many': 'записей'}"
-								)
+			.article.m-preview
+				a.l-plr-15(href="{{category.link}}" ng-init="thumb=vm.getThumbnailUrl(category.acf.featured_image.sizes.thumbnail)")
+					//.row
+					//	.thumbnail-cover
+					//		.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
+					.row
+						.info.l-p-20
+							.title.h4.red(ng-bind-html="::category.name")
+							.description.f-lh-26.black(ng-bind-html="::category.description")
+							div.black
+								span(ng-bind="::category.count")
+								| &nbsp;
+								span: ng-pluralize(
+									count="category.count"
+									when="{'one': 'запись','few':'записи','many': 'записей'}"
+									)
+
 	//.row.text-center
 	//	button.m-text.ui-load-more-button(is-loading="vm.isLoading" per-page="vm.perPage" ng-click="vm.loadMore()")
 	//		.glyphicon.glyphicon-repeat

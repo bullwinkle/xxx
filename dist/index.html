@@ -11,7 +11,7 @@
     <title>NINJA`S WORKSHOP</title>
     <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128-9c68629047fed40a8ac2c8c6727e01fa.png">
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256-eee36b79eafb351007ca598a2a9923a8.png">
-  <link href="/app-cc4f77dc00939bb59888fea970511923.css" rel="stylesheet"></head>
+  <link href="/app-cbb8e4ab4e5da7449338e6320cb7e7fa.css" rel="stylesheet"></head>
   <body ng-app="app" ng-controller="app.ctrl as ninja" ng-strict-di ng-class="{'no-scroll':ninja.modal.visible}">
     <div class="l">
       <div class="l-main">
@@ -39,20 +39,18 @@
           </div>
         </div>
         <div class="l-content">
-          <div class="container-fluid l-container l-ptb-30">
-            <div class="l-flex">
-              <div ui-breadcrumbs displayname-property="data.displayName" display-pathname-property="data.displayPathname" abstract-proxy-property="data.proxyName" class="l-flex-1"></div>
-              <form name="ninja.globalSearchForm" ng-submit="s &amp;&amp; ninja.submitGlobalSearch(s)" class="global-search-form">
-                <div class="global-search-input">
-                  <input type="search" results="5" name="s" placeholder="Поиск" ng-model="s" ng-model-options="{updateOn:'input paste change'}" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
-                </div>
-                <!--input.hide(-->
-                <!--	type="submit"-->
-                <!--	ng-disabled="ninja.globalSearchForm.$invalid"-->
-                <!--	value="Поиск"-->
-                <!--)-->
-              </form>
-            </div>
+          <div class="l-container container-fluid l-flex-desctop l-ptb-30">
+            <div ui-breadcrumbs displayname-property="data.displayName" display-pathname-property="data.displayPathname" abstract-proxy-property="data.proxyName" class="l-flex-desctop-1"></div>
+            <form name="ninja.globalSearchForm" ng-submit="s &amp;&amp; ninja.submitGlobalSearch(s)" class="l-flex-0 global-search-form">
+              <div class="global-search-input">
+                <input type="search" results="5" name="s" placeholder="Поиск" ng-model="s" ng-model-options="{updateOn:'input paste change'}" ng-required="true" ng-trim="true" class="l-w-100"><span class="glyphicon glyphicon-search grey-2 l-w20 l-h20"></span>
+              </div>
+              <!--input.hide(-->
+              <!--	type="submit"-->
+              <!--	ng-disabled="ninja.globalSearchForm.$invalid"-->
+              <!--	value="Поиск"-->
+              <!--)-->
+            </form>
           </div>
           <div ui-view="content">
             <div class="container-fluid l-container">
@@ -128,5 +126,5 @@
         </form>
       </div>
     </div>
-  <script src="/vendor-bcea2343c98c30c08ccc.js"></script><script src="/app-326ffb4a7206779640d5.js"></script></body>
+  <script src="/vendor-bcea2343c98c30c08ccc.js"></script><script src="/app-d475ec4ec25dbad98c0e.js"></script></body>
 </html>

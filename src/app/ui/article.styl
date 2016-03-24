@@ -66,7 +66,7 @@ blockquote.aligncenter {
 			position: relative
 			width: 100%
 			overflow hidden
-			
+
 		.thumbnail
 			background-image: url('~img/no-image.jpg');
 			background-position: center;
@@ -81,6 +81,8 @@ blockquote.aligncenter {
 			width: 100%
 			position: relative;
 			lineClamp()
+			@media (max-width: $screen-xs-max)
+				height: auto
 
 		a.more-link
 			display: none !important
@@ -93,6 +95,10 @@ blockquote.aligncenter {
 		&:hover
 			.td-u
 				text-decoration: none
+
+		@media (max-width $screen-xs-max)
+			padding-left: 15px
+			padding-right: 15px
 
 	&-product-preview
 		.title
