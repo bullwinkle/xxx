@@ -1,11 +1,11 @@
 .container-fluid.l-container
 	.row
-		.col-xs-12: h1.h2 Категории
+		.col-xs-12: h1.h2.l-mt-10 Каталог
 	.row
 		.cod-xs-12.col-md-3(style="z-index:50")
 
 			select.visible-xs-block.visible-sm-block.l-mb-30(ng-model="vm.categoryToGoOn" ng-change="vm.goToUrl()" ng-options="category.name for category in vm.categories")
-
+			
 			ul.ui-tree-list.hidden-xs.hidden-sm(
 				ui-tree-list
 				categories="vm.categories"

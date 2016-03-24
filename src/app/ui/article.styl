@@ -48,7 +48,6 @@ blockquote.aligncenter {
 
 		& > a
 			width: 100%
-			height: 100%
 			display block
 			text-decoration: none
 			transition transform .12s ease-in-out, box-shadow .15s ease, background-color .11s ease-in-out, color .2s ease-in-out
@@ -108,6 +107,10 @@ blockquote.aligncenter {
 
 		.add-to-cart:hover
 			@extend a:hover
+
+		@media (max-width $screen-xs-max)
+			padding-left: 15px
+			padding-right: 15px
 
 	&-howto
 	&-full

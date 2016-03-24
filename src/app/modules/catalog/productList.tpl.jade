@@ -1,20 +1,21 @@
 ul.row
 	//+article-product-preview("/product-details.html")
-	li.col-xs-12.col-sm-6.col-md-4.l-plr-10.l-mb-20.l-pb-10.black.article.m-product-preview(ng-repeat="product in vm.posts")
-		a.l-plr-15(href="{{product.link}}" ng-init="thumb=vm.getThumbnailUrl(product.acf.featured_image.sizes.thumbnail)")
-			.row
-				.thumbnail-cover
-					.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
-			.row
-				.info.info.l-pt-20.l-plr-20
-					.title.l-mb-5(ng-bind-html="::product.title.rendered")
-					.price.f-lh-26.black
-						span Цена:&nbsp;
-						span.red(ng-bind="::product.acf.price | currency")
-					.description.f-lh-26.black(ng-bind-html="::product.excerpt.rendered")
-					.td-u.f-w-900.t-center.l-p-20.red.add-to-cart(ng-click="vm.updateInCart(product, $event)")
-						span(ng-if="!vm.inCart(product)") Добавить
-						span(ng-if="vm.inCart(product)") Удалить
+	li.col-xs-12.col-sm-6.col-md-4.l-mb-20.l-pb-10.black(ng-repeat="product in vm.posts")
+		.article.m-product-preview
+			a.l-plr-15(href="{{product.link}}" ng-init="thumb=vm.getThumbnailUrl(product.acf.featured_image.sizes.thumbnail)")
+				.row
+					.thumbnail-cover
+						.thumbnail(ng-style="{'background-image': '{{::thumb}}'}")
+				.row
+					.info.info.l-pt-20.l-plr-20
+						.title.l-mb-5(ng-bind-html="::product.title.rendered")
+						.price.f-lh-26.black
+							span Цена:&nbsp;
+							span.red(ng-bind="::product.acf.price | currency")
+						.description.f-lh-26.black(ng-bind-html="::product.excerpt.rendered")
+						.td-u.f-w-900.t-center.l-p-20.red.add-to-cart(ng-click="vm.updateInCart(product, $event)")
+							span(ng-if="!vm.inCart(product)") Добавить
+							span(ng-if="vm.inCart(product)") Удалить
 //+pagination
 //	TODO enable pagination
 //ul.row.ui-pagination
