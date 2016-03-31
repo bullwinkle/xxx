@@ -11,8 +11,15 @@ export default function ({dev, port, real}) {
 		entry: {},
 		output: {}
 	});
+	const LOGLEVELS = {};
+	LOGLEVELS.LOG_DISABLE = 'OFF';
+	LOGLEVELS.LOG_ERROR = 'ERROR';
+	LOGLEVELS.LOG_WARN = 'WARN';
+	LOGLEVELS.LOG_INFO = 'INFO';
+	LOGLEVELS.LOG_DEBUG = 'DEBUG';
 
 	let cfg = {
+		logLevel: LOGLEVELS.LOG_DISABLE,
 		port,
 		autoWatch: dev,
 		singleRun: !dev,
