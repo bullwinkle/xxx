@@ -8,7 +8,7 @@ module.exports = function ($state, linkActive) {
 				href || (href = '');
 				var a = document.createElement('a');
 				a.href = href;
-				return new RegExp(`^${a.pathname}.*`).test(linkActive.currentHref);
+				return new RegExp(`^${decodeURIComponent(a.pathname)}.*`).test(decodeURIComponent(linkActive.currentHref));
 			};
 		}
 	}
