@@ -18,10 +18,7 @@ module.exports = function ($localStorage) {
 	goods.reset = () => {
 		return goods.splice(0,goods.length)
 	}
-
-	window.cart = {
-		goods: goods
-	}
+	
 	return {
 		goods: goods
 	}

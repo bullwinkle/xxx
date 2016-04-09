@@ -3,7 +3,6 @@ module.exports = function($location, $state, $sanitize, articles) {
 
 	var vm = this;
 	vm.articles = articles;
-	window.$sanitize = $sanitize
 	vm.html = (str) => {
 		var div = document.createElement('div')
 		div.innerHTML = str

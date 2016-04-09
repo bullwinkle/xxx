@@ -1,7 +1,6 @@
 module.exports = function ($timeout, cart, Mail) {
 	"ngInject";
 	var vm = this;
-	window.vm = vm
 	vm.order = {
 		name: "",
 		phone: "",

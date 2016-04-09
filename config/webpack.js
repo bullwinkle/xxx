@@ -82,10 +82,6 @@ export default function ({dev, hot, test, port}) {
 				loader: `url-loader?limit=${ASSET_CACHE}&name=${ASSET_NAME}`
 			}]
 		},
-		stylus: {
-		  use: [require('nib')()],
-		  import: ['~nib/lib/nib/index.styl']
-		},
 		plugins: [
 			new ExtractPlugin(CSS_NAME),
 			new webpack.DefinePlugin({
